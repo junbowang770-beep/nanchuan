@@ -15,44 +15,19 @@
       <div class="logo">南川大楼<br>你的情绪栖息地</div>
       <div class="sub">情绪记录｜线下精灵｜楼内指引｜文创商城</div>
       <nav class="nav">
-        <button class="active" onclick="show('home',this)">🏠 走进南川大楼</button>
-        <button onclick="show('emotion',this)">😊 选择今日情绪</button>
-        <button onclick="show('calendar',this)">📅 情绪日历</button>
-        <button onclick="show('weekly',this)">📊 每周情绪报告</button>
-        <button onclick="show('guide',this)">🧭 楼内指引</button>
-        <button onclick="show('sprite',this)">🔗 对接线下精灵</button>
-        <button onclick="show('shop',this)">🛍️ 文创商城</button>
+        <button class="active" onclick="show('calendar',this)">📅 情绪日历</button>
+        <button onclick="show('weekly',this)">📊 我的周报</button>
+        <button onclick="show('visit',this)">🏢 线下参观</button>
+        <button onclick="show('ai',this)">🤖 澄澄 AI</button>
       </nav>
       <div class="user-card">
-        当前状态：<b id="sideEmotion">未选择</b><br>
-        今日推荐：<span id="sideReco">先进入大楼选择情绪</span>
+        当前状态：<b id="sideEmotion">今日未记录</b><br>
+        AI建议：<span id="sideReco">先完成今天的情绪记录</span>
       </div>
     </aside>
 
     <main class="main">
-      <section class="page active" id="home">
-        <div class="top"><div class="title"><h1>南川大楼——你的情绪栖息地</h1><p>中心入口：点击“走进南川大楼”，开始一次线上到线下的情绪疗愈旅程。</p></div><div class="pill">Prototype v2</div></div>
-        <div class="hero">
-          <div class="panel">
-            <h2>从线上选择情绪，到线下遇见你的情绪精灵。</h2><br>
-            <p class="small">这个网页原型把日常情绪管理、周报生成、楼内空间导览、精灵互动和文创购买整合成一个小应用。适合放进汇报中，展示南川大楼如何从“建筑改造”升级为“情绪服务系统”。</p>
-            <br><br>
-            <div class="grid two">
-              <button class="card" onclick="showById('emotion')"><div class="icon yellow">😊</div><h3>开始情绪选择</h3><p>选择今日心情，生成专属疗愈路线。</p></button>
-              <button class="card" onclick="showById('calendar')"><div class="icon blue">📅</div><h3>记录日常情绪</h3><p>点击日历日期，完成情绪打卡。</p></button>
-              <button class="card" onclick="showById('guide')"><div class="icon green">🧭</div><h3>查看楼内指引</h3><p>了解不同楼层的疗愈和医疗功能。</p></button>
-              <button class="card" onclick="showById('shop')"><div class="icon purple">🛍️</div><h3>购买文创</h3><p>把情绪精灵带回日常生活。</p></button>
-            </div>
-          </div>
-          <div class="panel building-wrap">
-            <div class="sprite s1">😊</div><div class="sprite s2">💧</div><div class="sprite s3">🔥</div><div class="sprite s4">🌿</div>
-            <div class="building" onclick="showById('emotion')" title="点击进入情绪选择">
-              <div class="bluebar"></div><div class="floor f5">5F 修复</div><div class="floor f4">4F 激活</div><div class="floor f3">3F 释放</div><div class="floor f2">2F 舒缓</div><div class="floor f1">1F 接待</div>
-            </div>
-            <button class="btn" style="position:absolute;bottom:28px" onclick="showById('emotion')">走进南川大楼</button>
-          </div>
-        </div>
-      </section>
+      
 
       <section class="page" id="emotion">
         <div class="top"><div class="title"><h1>选择今日情绪</h1><p>选择后会匹配线下情绪精灵、楼层路线和今日建议。</p></div><div class="pill" id="todayPick">今日未选择</div></div>
@@ -66,52 +41,87 @@
         </div>
       </section>
 
-      <section class="page" id="calendar">
-        <div class="top"><div class="title"><h1>情绪日历</h1><p>点击日期完成情绪打卡，可用于生成每周情绪报告。</p></div><button class="btn" onclick="randomWeek()">模拟一周记录</button></div>
+      <section class="page active" id="calendar">
+        <div class="top"><div class="title"><h1>情绪日历</h1><p>这是整个系统的核心。每天记录情绪后，系统会自动分析你的状态趋势，并推荐适合的南川大楼疗愈路线。</p></div><button class="btn" onclick="generateReport()">更新 AI 分析</button></div>
         <div class="calendar" id="calendarGrid"></div>
       </section>
 
       <section class="page" id="weekly">
-        <div class="top"><div class="title"><h1>每周情绪报告</h1><p>根据日历打卡记录，生成本周情绪分布和空间建议。</p></div><button class="btn" onclick="generateReport()">生成/刷新周报</button></div>
+        <div class="top"><div class="title"><h1>我的周报</h1><p>根据情绪日历中的真实记录，自动生成本周状态趋势与线下推荐路线。</p></div><div class="pill">AI Weekly Report</div></div>
         <div class="grid two">
-          <div class="panel"><h2 id="weeklyTitle">本周情绪概览</h2><p id="weeklyText" class="small">请先在情绪日历中记录几天，或点击“模拟一周记录”。</p><div class="report-bars" id="bars"></div></div>
-          <div class="panel"><h2>本周推荐路线</h2><br><p class="small" id="weeklyRoute">暂无数据。生成后会推荐你本周更适合去的楼层和线下装置。</p><br><button class="btn" onclick="showById('guide')">查看楼内指引</button></div>
+          <div class="panel">
+            <h2 id="weeklyTitle">本周情绪概览</h2>
+            <p id="weeklyText" class="small">请先在情绪日历中记录每日状态，系统会自动分析情绪变化。</p>
+            <div class="report-bars" id="bars"></div>
+          </div>
+          <div class="panel">
+            <h2>AI 推荐路线</h2><br>
+            <p class="small" id="weeklyRoute">暂无数据。完成情绪记录后，AI 会自动推荐适合的线下疗愈路线。</p>
+            <br>
+            <div class="grid two">
+              <div class="card selected">
+                <div class="icon blue">🧭</div>
+                <h3>推荐楼层</h3>
+                <p id="floorReco">等待分析</p>
+              </div>
+              <div class="card selected">
+                <div class="icon green">🌿</div>
+                <h3>推荐状态</h3>
+                <p id="emotionReco">等待分析</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="page" id="guide">
-        <div class="top"><div class="title"><h1>楼内指引</h1><p>点击楼层，查看南川大楼内部的情绪疗愈与医疗服务功能。</p></div><div class="pill">线上导航 / 线下导览</div></div>
+      <section class="page" id="visit">
+        <div class="top"><div class="title"><h1>线下参观</h1><p>从四川路桥开始，进入南川大楼，体验不同楼层与情绪精灵的互动疗愈路线。</p></div><div class="pill">Offline Experience</div></div>
         <div class="guide">
           <div class="floor-list">
-            <button class="card" onclick="floorInfo('1F 情绪接待大厅','手环读取、情绪光谱墙、初步心理状态问询、社区医疗服务台。','#d9fff0','🫧')">1F 接待</button>
-            <button class="card" onclick="floorInfo('2F 情绪舒缓层','呼吸引导舱、白噪音长椅、低刺激休息区，适合低落与疲惫人群。','#9bdcff','💧')">2F 舒缓</button>
-            <button class="card" onclick="floorInfo('3F 能量释放层','体感互动、节奏训练、压力释放装置，帮助安全释放愤怒与紧张。','#ffaaa0','🔥')">3F 释放</button>
-            <button class="card" onclick="floorInfo('4F 快乐激活层','光影互动、社区游戏、记忆唤醒与认知训练，增强积极情绪。','#ffe678','😊')">4F 激活</button>
-            <button class="card" onclick="floorInfo('5F 金色修复层','睡眠管理、心理咨询预约、轻医疗检测、身心状态报告生成。','#ffe1a3','🌙')">5F 修复</button>
-            <button class="card" onclick="floorInfo('顶层情绪花园','植物疗愈、社区活动、适老化康养休憩与安静冥想。','#a9efc5','🌿')">顶层花园</button>
+            <button class="card" onclick="floorInfo('四川路桥入口','领取智能手环，开启今日情绪路线。','#d9fff0','⌚')">桥梁入口</button>
+            <button class="card" onclick="floorInfo('情绪互动装置','白噪音长椅、情绪智能座椅、发光邮筒等互动点位。','#9bdcff','🎧')">桥上互动</button>
+            <button class="card" onclick="floorInfo('南川大楼大厅','读取手环数据，生成专属疗愈建议与导览。','#ffaaa0','🏢')">进入大楼</button>
+            <button class="card" onclick="floorInfo('情绪楼层系统','不同楼层对应不同情绪状态与医疗服务。','#ffe678','✨')">楼层路线</button>
+            <button class="card" onclick="floorInfo('情绪花园','完成疗愈后，在顶层花园进行休憩与社区交流。','#a9efc5','🌿')">顶层花园</button>
           </div>
-          <div class="floor-detail" id="floorDetail" style="--glow:#9bdcff"><div class="detail-content"><div class="icon blue" id="floorEmoji">💧</div><h2 id="floorName">2F 情绪舒缓层</h2><br><p id="floorText">呼吸引导舱、白噪音长椅、低刺激休息区，适合低落与疲惫人群。</p><br><button class="btn" onclick="showById('sprite')">呼叫本层情绪精灵</button></div></div>
+          <div class="floor-detail" id="floorDetail" style="--glow:#9bdcff"><div class="detail-content"><div class="icon blue" id="floorEmoji">⌚</div><h2 id="floorName">四川路桥入口</h2><br><p id="floorText">领取智能手环，开启今日情绪路线。</p><br><button class="btn" onclick="showById('ai')">咨询澄澄 AI</button></div></div>
         </div>
       </section>
 
-      <section class="page" id="sprite">
-        <div class="top"><div class="title"><h1>对接线下情绪精灵</h1><p>线上选择情绪后，系统匹配线下装置、精灵灯光与互动点位。</p></div><button class="btn" onclick="connectSprite()">开始连接</button></div>
-        <div class="link-box">
-          <div class="device"><div class="icon yellow" id="linkIcon">✨</div><h2 id="linkName">等待连接</h2><br><p class="small" id="linkText">点击“开始连接”，模拟与南川大楼内的情绪精灵、智能座椅、手环数据同步。</p><span class="status" id="linkStatus">未连接</span></div>
-          <div class="device"><h2>线下互动方式</h2><br><p class="small">1. 手环靠近楼层感应点，点亮对应情绪精灵。<br>2. 精灵会在屏幕、灯光或座椅上给予反馈。<br>3. 完成体验后，数据会回到情绪日历，进入周报分析。<br>4. 用户可以在商城购买对应精灵文创。</p></div>
+      <section class="page" id="ai">
+        <div class="top"><div class="title"><h1>澄澄 AI</h1><p>你的 AI 情绪管理数字机器人。根据情绪记录与线下体验，为你生成个性化建议。</p></div><div class="pill">Emotion AI Assistant</div></div>
+        <div class="grid two">
+          <div class="panel">
+            <div style="display:flex;gap:18px;align-items:center;margin-bottom:18px">
+              <div class="icon yellow" style="width:90px;height:90px;font-size:42px">🤖</div>
+              <div>
+                <h2>澄澄已上线</h2>
+                <p class="small">可以分析你的情绪状态、推荐楼层路线，并生成每日陪伴建议。</p>
+              </div>
+            </div>
+            <div class="card selected">
+              <h3>今日 AI 建议</h3>
+              <p id="aiAdvice">你最近的情绪记录较少，建议先完成今天的情绪打卡。</p>
+            </div>
+          </div>
+          <div class="panel">
+            <h2>和澄澄聊聊</h2><br>
+            <div id="chatBox" style="height:260px;overflow:auto;border-radius:24px;background:rgba(255,255,255,.55);padding:18px;margin-bottom:18px">
+              <div class="small"><b>澄澄：</b>你好呀，今天想和我聊聊你的心情吗？</div>
+            </div>
+            <div style="display:flex;gap:12px">
+              <input id="chatInput" placeholder="输入你的心情..." style="flex:1;border:none;border-radius:999px;padding:16px;background:rgba(255,255,255,.7)">
+              <button class="btn" onclick="sendChat()">发送</button>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="page" id="shop">
-        <div class="top"><div class="title"><h1>情绪文创商城</h1><p>购买南川大楼情绪精灵相关文创，把疗愈体验带回日常。</p></div><div class="pill">购物车：<b id="cartCount">0</b> 件</div></div>
-        <div class="shop">
-          <div class="product"><div class="product-img yellow">😊</div><h3>快乐精灵徽章</h3><div class="price">¥29</div><button class="btn" onclick="addCart('快乐精灵徽章')">加入购物车</button></div>
-          <div class="product"><div class="product-img blue">💧</div><h3>舒缓香氛卡</h3><div class="price">¥39</div><button class="btn" onclick="addCart('舒缓香氛卡')">加入购物车</button></div>
-          <div class="product"><div class="product-img green">🌿</div><h3>情绪花园手账</h3><div class="price">¥49</div><button class="btn" onclick="addCart('情绪花园手账')">加入购物车</button></div>
-          <div class="product"><div class="product-img purple">🌙</div><h3>晚安修复夜灯</h3><div class="price">¥89</div><button class="btn" onclick="addCart('晚安修复夜灯')">加入购物车</button></div>
-        </div>
-        <div class="cart"><b>购物车内容：</b><span id="cartText">暂无商品</span></div>
-      </section>
+      
+
+      
+
+      
     </main>
   </div>
 
@@ -127,8 +137,51 @@
   function showById(id){const btn=navs.find(b=>b.getAttribute('onclick').includes("'"+id+"'"));show(id,btn)}
   function pickEmotion(name,emoji,sprite,floor,advice){current={emotion:name,emoji,sprite,floor,advice};document.getElementById('todayPick').innerText='今日：'+name;document.getElementById('emotionResult').innerText=emoji+' '+sprite;document.getElementById('emotionAdvice').innerText='推荐：'+floor+'。'+advice;document.getElementById('sideEmotion').innerText=name;document.getElementById('sideReco').innerText=floor;records[new Date().getDate()]={name,emoji};renderCalendar();}
   function renderCalendar(){const grid=document.getElementById('calendarGrid');grid.innerHTML='';for(let i=1;i<=28;i++){const r=records[i];const div=document.createElement('div');div.className='day';div.onclick=()=>{const name=emotions[Math.floor(Math.random()*emotions.length)];records[i]={name,emoji:emojiMap[name]};renderCalendar()};div.innerHTML='<b>5月 '+i+'日</b><span class="dot">'+(r?r.emoji:'＋')+'</span><div class="small">'+(r?r.name:'点击记录')+'</div>';grid.appendChild(div)}}
-  function randomWeek(){for(let i=15;i<=21;i++){const name=emotions[Math.floor(Math.random()*emotions.length)];records[i]={name,emoji:emojiMap[name]}}renderCalendar();showById('weekly');generateReport()}
-  function generateReport(){const counts={快乐:0,低落:0,焦虑:0,愤怒:0,平静:0};Object.values(records).forEach(r=>counts[r.name]++);const total=Object.values(counts).reduce((a,b)=>a+b,0);const bars=document.getElementById('bars');bars.innerHTML='';Object.entries(counts).forEach(([k,v])=>{const pct=total?Math.round(v/total*100):0;bars.innerHTML+=`<div class="bar"><b>${emojiMap[k]} ${k}</b><div class="track"><span style="width:${pct}%"></span></div><span>${pct}%</span></div>`});let top=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0];document.getElementById('weeklyText').innerText=total?'本周共记录 '+total+' 次，主要情绪为「'+top[0]+'」。系统建议根据主要情绪安排线下疗愈路线。':'暂无记录。';document.getElementById('weeklyRoute').innerText=total?routeByEmotion(top[0]):'暂无数据。请先记录情绪。'}
+  
+  function generateReport(){
+      const counts={快乐:0,低落:0,焦虑:0,愤怒:0,平静:0};
+      Object.values(records).forEach(r=>counts[r.name]++);
+      const total=Object.values(counts).reduce((a,b)=>a+b,0);
+      const bars=document.getElementById('bars');
+      bars.innerHTML='';
+      Object.entries(counts).forEach(([k,v])=>{
+        const pct=total?Math.round(v/total*100):0;
+        bars.innerHTML+=`<div class="bar"><b>${emojiMap[k]} ${k}</b><div class="track"><span style="width:${pct}%"></span></div><span>${pct}%</span></div>`
+      });
+      if(!total){
+        document.getElementById('weeklyText').innerText='暂无记录，请先在情绪日历中完成打卡。';
+        return;
+      }
+      let top=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];
+      document.getElementById('weeklyText').innerText='本周共记录 '+total+' 次，AI 判断你的主要情绪状态为「'+top+'」。';
+      document.getElementById('weeklyRoute').innerText=routeByEmotion(top);
+      document.getElementById('floorReco').innerText=routeFloor(top);
+      document.getElementById('emotionReco').innerText=emotionText(top);
+      document.getElementById('aiAdvice').innerText=emotionText(top);
+      document.getElementById('sideReco').innerText=routeFloor(top);
+    }
+
+    function routeFloor(e){return {快乐:'4F 快乐激活层',低落:'2F 情绪舒缓层',焦虑:'顶层情绪花园',愤怒:'3F 能量释放层',平静:'5F 金色修复层'}[e]}
+
+    function emotionText(e){return {快乐:'你最近状态积极，可以多参与社区互动与快乐激活体验。',低落:'最近可能有些疲惫，建议慢一点，优先体验舒缓疗愈。',焦虑:'建议减少信息刺激，多进行植物疗愈与呼吸训练。',愤怒:'近期压力值偏高，可以通过释放层互动装置进行能量转化。',平静:'你的状态较稳定，适合进一步进行深层修复与睡眠管理。'}[e]}
+
+    function sendChat(){
+      const input=document.getElementById('chatInput');
+      const box=document.getElementById('chatBox');
+      if(!input.value.trim())return;
+      box.innerHTML+=`<div class="small" style="margin-top:12px"><b>你：</b>${input.value}</div>`;
+      let reply='我会一直陪着你。';
+      if(input.value.includes('累')||input.value.includes('疲惫'))reply='你最近可能有些疲惫，建议今天优先体验 2F 情绪舒缓层。';
+      else if(input.value.includes('焦虑'))reply='试试去顶层情绪花园待10分钟，配合呼吸训练会舒服很多。';
+      else if(input.value.includes('开心'))reply='太好了！你今天很适合去 4F 快乐激活层体验互动装置。';
+      else if(input.value.includes('生气'))reply='可以尝试 3F 能量释放层，把压力安全地释放出来。';
+      box.innerHTML+=`<div class="small" style="margin-top:12px"><b>澄澄：</b>${reply}</div>`;
+      box.scrollTop=box.scrollHeight;
+      input.value='';
+    }
+
+    function generateReportOld(){
+const counts={快乐:0,低落:0,焦虑:0,愤怒:0,平静:0};Object.values(records).forEach(r=>counts[r.name]++);const total=Object.values(counts).reduce((a,b)=>a+b,0);const bars=document.getElementById('bars');bars.innerHTML='';Object.entries(counts).forEach(([k,v])=>{const pct=total?Math.round(v/total*100):0;bars.innerHTML+=`<div class="bar"><b>${emojiMap[k]} ${k}</b><div class="track"><span style="width:${pct}%"></span></div><span>${pct}%</span></div>`});let top=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0];document.getElementById('weeklyText').innerText=total?'本周共记录 '+total+' 次，主要情绪为「'+top[0]+'」。系统建议根据主要情绪安排线下疗愈路线。':'暂无记录。';document.getElementById('weeklyRoute').innerText=total?routeByEmotion(top[0]):'暂无数据。请先记录情绪。'}
   function routeByEmotion(e){return {快乐:'建议路线：4F 快乐激活层 → 顶层情绪花园 → 商城购买快乐精灵徽章。',低落:'建议路线：2F 情绪舒缓层 → 白噪音长椅 → 5F 金色修复层。',焦虑:'建议路线：顶层情绪花园 → 2F 呼吸引导舱 → 1F 社区医疗服务台。',愤怒:'建议路线：3F 能量释放层 → 2F 舒缓休息区 → 顶层花园。',平静:'建议路线：5F 金色修复层 → 顶层花园 → 晚安修复夜灯文创。'}[e]}
   function floorInfo(name,text,color,emoji){document.getElementById('floorDetail').style.setProperty('--glow',color);document.getElementById('floorEmoji').innerText=emoji;document.getElementById('floorName').innerText=name;document.getElementById('floorText').innerText=text}
   function connectSprite(){document.getElementById('linkIcon').innerText=current.emoji;document.getElementById('linkName').innerText=current.sprite==='未匹配'?'请先选择情绪':current.sprite+' 已连接';document.getElementById('linkText').innerText=current.sprite==='未匹配'?'请返回“选择今日情绪”，选择后再连接线下精灵。':'已同步到线下装置：'+current.floor+'。精灵将在入口屏幕、座椅光效和楼层导览中出现。';document.getElementById('linkStatus').innerText=current.sprite==='未匹配'?'未连接':'连接成功'}

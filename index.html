@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>南川大楼——你的情绪栖息地</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:"Microsoft YaHei",sans-serif;
+  background:linear-gradient(135deg,#fff1d7,#ebf8ff,#f6edff);
+  overflow:hidden;
+  color:#2d3445;
+}
+
+.app{
+  width:100vw;
+  height:100vh;
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:20px;
+  padding:20px;
+}
+
+.sidebar{
+  background:rgba(255,255,255,.7);
+  backdrop-filter:blur(20px);
+  border-radius:30px;
+  padding:24px;
+  box-shadow:0 20px 50px rgba(60,80,120,.15);
+  display:flex;
+  flex-direction:column;
+}
+
+.logo{
+  font-size:24px;
+  font-weight:900;
+  line-height:1.4;
+  margin-bottom:10px;
+}
+
+.sub{
+  color:#667085;
+  font-size:14px;
+  line-height:1.7;
+  margin-bottom:30px;
+}
+
+.nav{
+  display:grid;
+  gap:12px;
+}
+
+.nav button{
+  border:none;
+  background:white;
+  border-radius:18px;
+  padding:15px;
+  text-align:left;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:700;
+  transition:.25s;
+}
+
+.nav button:hover,
+.nav button.active{
+  background:linear-gradient(135deg,#ffb65f,#ff8399);
+  color:white;
+  transform:translateX(4px);
+}
+
+.user{
+  margin-top:auto;
+  background:white;
+  border-radius:24px;
+  padding:18px;
+  font-size:14px;
+  color:#667085;
+  line-height:1.8;
+}
+
+.main{
+  background:rgba(255,255,255,.68);
+  backdrop-filter:blur(20px);
+  border-radius:30px;
+  padding:30px;
+  overflow:auto;
+  box-shadow:0 20px 50px rgba(60,80,120,.15);
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:30px;
+}
+
+.title h1{
+  font-size:36px;
+  margin-bottom:8px;
+}
+
+.title p{
+  color:#667085;
+}
+
+.pill{
+  padding:10px 18px;
+  background:white;
+  border-radius:999px;
+  font-size:14px;
+  color:#667085;
+}
+
+.calendar{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:14px;
+}
+
+.day{
+  min-height:90px;
+  border-radius:22px;
+  background:white;
+  padding:12px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.day:hover{
+  transform:translateY(-4px);
+}
+
+.day b{
+  display:block;
+  margin-bottom:10px;
+}
+
+.dot{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:#f4f4f4;
+  display:grid;
+  place-items:center;
+  font-size:18px;
+}
+
+.grid{
+  display:grid;
+  gap:20px;
+}
+
+.grid.two{
+  grid-template-columns:1fr 1fr;
+}
+
+.card{
+  background:white;
+  border-radius:28px;
+  padding:24px;
+  box-shadow:0 10px 30px rgba(80,100,130,.08);
+}
+
+.bar{
+  margin-top:20px;
+}
+
+.track{
+  margin-top:10px;
+  height:14px;
+  border-radius:999px;
+  overflow:hidden;
+  background:#edf1f7;
+}
+
+.track span{
+  display:block;
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,#ffb65f,#ff8399);
+}
+
+.route{
+  margin-top:24px;
+  padding:20px;
+  border-radius:22px;
+  background:#fff6ea;
+  line-height:1.8;
+}
+
+.visit-grid{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:20px;
+}
+
+.floor-list{
+  display:grid;
+  gap:12px;
+}
+
+.floor-list button{
+  border:none;
+  background:white;
+  border-radius:20px;
+  padding:16px;
+  text-align:left;
+  cursor:pointer;
+  font-weight:700;
+  transition:.25s;
+}
+
+.floor-list button:hover{
+  transform:translateX(4px);
+  background:#fff7ec;
+}
+
+.floor-detail{
+  background:white;
+  border-radius:30px;
+  padding:30px;
+}
+
+.ai-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.chat{
+  background:white;
+  border-radius:30px;
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  height:520px;
+}
+
+.chat-box{
+  flex:1;
+  overflow:auto;
+  margin-bottom:20px;
+}
+
+.msg{
+  margin-bottom:16px;
+  line-height:1.7;
+}
+
+.input-row{
+  display:flex;
+  gap:12px;
+}
+
+.input-row input{
+  flex:1;
+  border:none;
+  border-radius:999px;
+  padding:16px;
+  background:#f5f7fb;
+}
+
+.btn{
+  border:none;
+  border-radius:999px;
+  padding:14px 24px;
+  background:linear-gradient(135deg,#ffb65f,#ff8399);
+  color:white;
+  font-weight:800;
+  cursor:pointer;
+}
+
+@media(max-width:1000px){
+
+  body{
+    overflow:auto;
+  }
+
+  .app{
+    grid-template-columns:1fr;
+    height:auto;
+  }
+
+  .grid.two,
+  .ai-layout,
+  .visit-grid{
+    grid-template-columns:1fr;
+  }
+
+  .calendar{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <aside class="sidebar">
+
+    <div class="logo">
+      南川大楼<br>
+      你的情绪栖息地
+    </div>
+
+    <div class="sub">
+      情绪疗愈 × AI陪伴 × 线下参观
+    </div>
+
+    <div class="nav">
+      <button class="active" onclick="showPage('calendar',this)">📅 情绪日历</button>
+      <button onclick="showPage('weekly',this)">📊 我的周报</button>
+      <button onclick="showPage('visit',this)">🏢 线下参观</button>
+      <button onclick="showPage('ai',this)">🤖 澄澄AI</button>
+    </div>
+
+    <div class="user">
+      今日状态：<b id="sideEmotion">未记录</b><br>
+      AI建议：<span id="sideReco">先完成情绪记录</span>
+    </div>
+
+  </aside>
+
+  <main class="main">
+
+    <!-- 日历 -->
+
+    <section class="page active" id="calendar">
+
+      <div class="top">
+        <div class="title">
+          <h1>情绪日历</h1>
+          <p>每天记录情绪，AI会自动生成周报与疗愈路线。</p>
+        </div>
+
+        <button class="btn" onclick="generateReport()">
+          更新AI分析
+        </button>
+      </div>
+
+      <div class="calendar" id="calendarGrid"></div>
+
+    </section>
+
+    <!-- 周报 -->
+
+    <section class="page" id="weekly">
+
+      <div class="top">
+        <div class="title">
+          <h1>我的周报</h1>
+          <p>AI 根据你的情绪日历生成趋势分析。</p>
+        </div>
+
+        <div class="pill">Weekly Report</div>
+      </div>
+
+      <div class="grid two">
+
+        <div class="card">
+
+          <h2>本周情绪趋势</h2>
+
+          <div class="bar">
+            😊 快乐
+            <div class="track">
+              <span id="happyBar" style="width:0%"></span>
+            </div>
+          </div>
+
+          <div class="bar">
+            💧 低落
+            <div class="track">
+              <span id="sadBar" style="width:0%"></span>
+            </div>
+          </div>
+
+          <div class="bar">
+            🌿 焦虑
+            <div class="track">
+              <span id="anxBar" style="width:0%"></span>
+            </div>
+          </div>
+
+          <div class="bar">
+            🔥 愤怒
+            <div class="track">
+              <span id="angryBar" style="width:0%"></span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card">
+
+          <h2>AI 推荐路线</h2>
+
+          <div class="route" id="weeklyRoute">
+            暂无数据，请先记录情绪。
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- 线下参观 -->
+
+    <section class="page" id="visit">
+
+      <div class="top">
+
+        <div class="title">
+          <h1>线下参观</h1>
+          <p>从四川路桥进入南川大楼，体验情绪疗愈路线。</p>
+        </div>
+
+        <div class="pill">Offline Experience</div>
+
+      </div>
+
+      <div class="visit-grid">
+
+        <div class="floor-list">
+
+          <button onclick="showFloor('四川路桥入口','领取智能手环，开启今日情绪路线。')">
+            🌉 四川路桥入口
+          </button>
+
+          <button onclick="showFloor('情绪互动装置','白噪音长椅、情绪智能座椅、发光邮筒。')">
+            🎧 桥上互动
+          </button>
+
+          <button onclick="showFloor('情绪舒缓层','呼吸引导、白噪音疗愈、慢节奏灯光。')">
+            💧 2F 情绪舒缓层
+          </button>
+
+          <button onclick="showFloor('快乐激活层','光影互动、认知训练、社区游戏。')">
+            😊 4F 快乐激活层
+          </button>
+
+        </div>
+
+        <div class="floor-detail">
+
+          <h2 id="floorTitle">
+            四川路桥入口
+          </h2>
+
+          <br>
+
+          <p id="floorText">
+            领取智能手环，开启今日情绪路线。
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- AI -->
+
+    <section class="page" id="ai">
+
+      <div class="top">
+
+        <div class="title">
+          <h1>澄澄AI</h1>
+          <p>你的AI情绪管理数字机器人。</p>
+        </div>
+
+        <div class="pill">DeepSeek AI</div>
+
+      </div>
+
+      <div class="ai-layout">
+
+        <div class="card">
+
+          <h2>今日 AI 建议</h2>
+
+          <br>
+
+          <div id="aiAdvice">
+            你最近还没有记录情绪，建议先完成今天的情绪打卡。
+          </div>
+
+        </div>
+
+        <div class="chat">
+
+          <div class="chat-box" id="chatBox">
+
+            <div class="msg">
+              <b>澄澄：</b>
+              你好呀，今天想和我聊聊你的心情吗？
+            </div>
+
+          </div>
+
+          <div class="input-row">
+
+            <input
+              id="chatInput"
+              placeholder="输入你的心情..."
+            >
+
+            <button class="btn" onclick="sendChat()">
+              发送
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<script>
+
+const pages=document.querySelectorAll(".page");
+const navBtns=document.querySelectorAll(".nav button");
+
+function showPage(id,btn){
+
+  pages.forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+
+  navBtns.forEach(b=>b.classList.remove("active"));
+
+  if(btn) btn.classList.add("active");
+
+}
+
+const emotions=["快乐","低落","焦虑","愤怒"];
+const emojis={
+  快乐:"😊",
+  低落:"💧",
+  焦虑:"🌿",
+  愤怒:"🔥"
+};
+
+let records={};
+
+function renderCalendar(){
+
+  const grid=document.getElementById("calendarGrid");
+
+  grid.innerHTML="";
+
+  for(let i=1;i<=28;i++){
+
+    const r=records[i];
+
+    const div=document.createElement("div");
+
+    div.className="day";
+
+    div.onclick=()=>{
+
+      const randomEmotion=
+      emotions[Math.floor(Math.random()*emotions.length)];
+
+      records[i]={
+        emotion:randomEmotion,
+        emoji:emojis[randomEmotion]
+      };
+
+      document.getElementById("sideEmotion").innerText=randomEmotion;
+
+      renderCalendar();
+
+    };
+
+    div.innerHTML=`
+      <b>5月 ${i}日</b>
+      <div class="dot">
+        ${r?r.emoji:"＋"}
+      </div>
+      <br>
+      <div style="font-size:13px;color:#667085">
+        ${r?r.emotion:"点击记录"}
+      </div>
+    `;
+
+    grid.appendChild(div);
+
+  }
+
+}
+
+renderCalendar();
+
+function generateReport(){
+
+  let counts={
+    快乐:0,
+    低落:0,
+    焦虑:0,
+    愤怒:0
+  };
+
+  Object.values(records).forEach(r=>{
+    counts[r.emotion]++;
+  });
+
+  let total=Object.values(counts).reduce((a,b)=>a+b,0);
+
+  if(total===0){
+    alert("请先记录情绪");
+    return;
+  }
+
+  document.getElementById("happyBar").style.width=
+  (counts["快乐"]/total*100)+"%";
+
+  document.getElementById("sadBar").style.width=
+  (counts["低落"]/total*100)+"%";
+
+  document.getElementById("anxBar").style.width=
+  (counts["焦虑"]/total*100)+"%";
+
+  document.getElementById("angryBar").style.width=
+  (counts["愤怒"]/total*100)+"%";
+
+  let topEmotion=
+  Object.entries(counts)
+  .sort((a,b)=>b[1]-a[1])[0][0];
+
+  const routeMap={
+    快乐:"推荐路线：4F 快乐激活层 → 顶层花园 → 社区互动区。",
+    低落:"推荐路线：2F 情绪舒缓层 → 白噪音长椅 → 金色修复层。",
+    焦虑:"推荐路线：情绪花园 → 呼吸引导区 → 放松疗愈区。",
+    愤怒:"推荐路线：3F 能量释放层 → 运动互动区 → 舒缓区。"
+  };
+
+  document.getElementById("weeklyRoute").innerText=
+  routeMap[topEmotion];
+
+  document.getElementById("sideReco").innerText=
+  routeMap[topEmotion];
+
+  document.getElementById("aiAdvice").innerText=
+  "AI检测到你本周主要情绪为「"+topEmotion+"」，"+
+  routeMap[topEmotion];
+
+}
+
+function showFloor(title,text){
+
+  document.getElementById("floorTitle").innerText=title;
+
+  document.getElementById("floorText").innerText=text;
+
+}
+
+async function sendChat(){
+
+  const input=document.getElementById("chatInput");
+  const box=document.getElementById("chatBox");
+
+  if(!input.value.trim()) return;
+
+  const userMessage=input.value;
+
+  input.value="";
+
+  box.innerHTML+=`
+    <div class="msg">
+      <b>你：</b>${userMessage}
+    </div>
+  `;
+
+  box.innerHTML+=`
+    <div class="msg" id="loading">
+      <b>澄澄：</b>正在思考...
+    </div>
+  `;
+
+  box.scrollTop=box.scrollHeight;
+
+  try{
+
+    const res=await fetch("/api/chat",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        message:userMessage,
+        records:records
+      })
+    });
+
+    const data=await res.json();
+
+    document.getElementById("loading").remove();
+
+    box.innerHTML+=`
+      <div class="msg">
+        <b>澄澄：</b>${data.reply}
+      </div>
+    `;
+
+  }catch(err){
+
+    document.getElementById("loading").remove();
+
+    box.innerHTML+=`
+      <div class="msg">
+        <b>澄澄：</b>
+        连接失败了，请稍后再试。
+      </div>
+    `;
+
+  }
+
+  box.scrollTop=box.scrollHeight;
+
+}
+
+</script>
+
+</body>
+</html>

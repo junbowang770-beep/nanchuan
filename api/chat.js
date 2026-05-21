@@ -2,7 +2,7 @@ import OpenAI from "openai";
 
 const client = new OpenAI({
   apiKey: process.env.DEEPSEEK_API_KEY,
-  baseURL: "https://api.deepseek.com/v1"
+  baseURL: "https://api.deepseek.com"
 });
 
 export default async function handler(req, res) {

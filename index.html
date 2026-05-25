@@ -107,7 +107,8 @@ body{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:30px;
+  margin-bottom:26px;
+  gap:16px;
 }
 
 .title h1{
@@ -127,23 +128,73 @@ body{
   color:#667085;
 }
 
+.toolbar{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.toolbar select{
+  border:none;
+  background:white;
+  border-radius:999px;
+  padding:12px 18px;
+  font-weight:700;
+  color:#344054;
+}
+
+.legend{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+
+.legend span{
+  background:white;
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:13px;
+  color:#667085;
+}
+
 .calendar{
   display:grid;
   grid-template-columns:repeat(7,1fr);
-  gap:14px;
+  gap:12px;
+}
+
+.week{
+  font-size:13px;
+  color:#667085;
+  text-align:center;
+  margin-bottom:4px;
 }
 
 .day{
-  min-height:90px;
+  min-height:86px;
   border-radius:22px;
   background:white;
   padding:12px;
   cursor:pointer;
   transition:.2s;
+  border:2px solid transparent;
 }
 
 .day:hover{
   transform:translateY(-4px);
+  border-color:#ff9aad;
+}
+
+.day.empty{
+  background:rgba(255,255,255,.35);
+  cursor:default;
+}
+
+.day.empty:hover{
+  transform:none;
+  border-color:transparent;
 }
 
 .day b{
@@ -178,11 +229,17 @@ body{
 }
 
 .bar{
-  margin-top:20px;
+  margin-top:18px;
+}
+
+.bar-head{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:8px;
+  font-weight:700;
 }
 
 .track{
-  margin-top:10px;
   height:14px;
   border-radius:999px;
   overflow:hidden;
@@ -197,11 +254,50 @@ body{
 }
 
 .route{
-  margin-top:24px;
-  padding:20px;
+  margin-top:18px;
+  padding:18px;
   border-radius:22px;
   background:#fff6ea;
   line-height:1.8;
+  color:#4b556b;
+}
+
+.route-board{
+  display:grid;
+  gap:14px;
+  margin-top:18px;
+}
+
+.route-card{
+  display:grid;
+  grid-template-columns:54px 1fr;
+  gap:14px;
+  align-items:center;
+  padding:16px;
+  border-radius:22px;
+  background:linear-gradient(135deg,#fff8ec,#ffffff);
+  box-shadow:inset 0 0 0 1px rgba(255,190,120,.25);
+}
+
+.route-icon{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  font-size:26px;
+  background:#fff2d8;
+}
+
+.route-card h3{
+  font-size:17px;
+  margin-bottom:5px;
+}
+
+.route-card p{
+  font-size:14px;
+  color:#667085;
+  line-height:1.6;
 }
 
 .visit-grid{
@@ -239,8 +335,116 @@ body{
 
 .ai-layout{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:380px 1fr;
   gap:20px;
+}
+
+.ai-character{
+  position:relative;
+  overflow:hidden;
+  min-height:520px;
+  background:linear-gradient(180deg,#fffaf0,#ffffff);
+}
+
+.chengcheng{
+  width:210px;
+  height:240px;
+  margin:24px auto;
+  border-radius:48% 48% 42% 42%;
+  background:linear-gradient(145deg,#fff,#f3efe7);
+  box-shadow:0 24px 60px rgba(130,110,80,.18), inset 0 0 24px rgba(255,255,255,.9);
+  position:relative;
+  display:grid;
+  place-items:center;
+}
+
+.chengcheng:before,
+.chengcheng:after{
+  content:"";
+  position:absolute;
+  top:94px;
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:#2c3446;
+}
+
+.chengcheng:before{left:62px;}
+.chengcheng:after{right:62px;}
+
+.smile{
+  position:absolute;
+  top:128px;
+  width:42px;
+  height:22px;
+  border-bottom:4px solid #2c3446;
+  border-radius:0 0 99px 99px;
+}
+
+.antenna{
+  position:absolute;
+  top:-48px;
+  left:50%;
+  width:8px;
+  height:52px;
+  background:#f0e7d7;
+  border-radius:99px;
+  transform:translateX(-50%);
+}
+
+.antenna:before{
+  content:"";
+  position:absolute;
+  top:-16px;
+  left:50%;
+  transform:translateX(-50%);
+  width:26px;
+  height:26px;
+  border-radius:50%;
+  background:white;
+  box-shadow:0 0 18px rgba(255,210,130,.8);
+}
+
+.heart{
+  position:absolute;
+  bottom:58px;
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  background:#fff4df;
+  display:grid;
+  place-items:center;
+  color:#ff8ba0;
+  font-size:26px;
+  box-shadow:0 0 24px rgba(255,190,150,.35);
+}
+
+.arm{
+  position:absolute;
+  width:60px;
+  height:112px;
+  background:linear-gradient(145deg,#fff,#eee8dd);
+  border-radius:40px;
+  top:104px;
+}
+
+.arm.left{left:-34px;transform:rotate(18deg);}
+.arm.right{right:-34px;transform:rotate(-18deg);}
+
+.character-tags{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:20px;
+}
+
+.character-tags span{
+  background:rgba(255,255,255,.76);
+  border-radius:18px;
+  padding:12px;
+  text-align:center;
+  color:#667085;
+  font-size:13px;
 }
 
 .chat{
@@ -287,347 +491,227 @@ body{
 }
 
 @media(max-width:1000px){
-
-  body{
-    overflow:auto;
-  }
-
-  .app{
-    grid-template-columns:1fr;
-    height:auto;
-  }
-
+  body{overflow:auto;}
+  .app{grid-template-columns:1fr;height:auto;}
   .grid.two,
   .ai-layout,
-  .visit-grid{
-    grid-template-columns:1fr;
-  }
-
-  .calendar{
-    grid-template-columns:repeat(2,1fr);
-  }
-
+  .visit-grid{grid-template-columns:1fr;}
+  .calendar{grid-template-columns:repeat(2,1fr);}
 }
 </style>
 </head>
 
 <body>
-
 <div class="app">
-
   <aside class="sidebar">
-
-    <div class="logo">
-      南川大楼<br>
-      你的情绪栖息地
-    </div>
-
-    <div class="sub">
-      情绪疗愈 × AI陪伴 × 线下参观
-    </div>
-
+    <div class="logo">南川大楼<br>你的情绪栖息地</div>
+    <div class="sub">情绪疗愈 × AI陪伴 × 线下参观</div>
     <div class="nav">
       <button class="active" onclick="showPage('calendar',this)">📅 情绪日历</button>
       <button onclick="showPage('weekly',this)">📊 我的周报</button>
       <button onclick="showPage('visit',this)">🏢 线下参观</button>
       <button onclick="showPage('ai',this)">🤖 澄澄AI</button>
     </div>
-
-    <div class="user">
-      今日状态：<b id="sideEmotion">未记录</b><br>
-      AI建议：<span id="sideReco">先完成情绪记录</span>
-    </div>
-
+    <div class="user">今日状态：<b id="sideEmotion">未记录</b><br>AI建议：<span id="sideReco">先完成情绪记录</span></div>
   </aside>
 
   <main class="main">
-
-    <!-- 日历 -->
-
     <section class="page active" id="calendar">
-
       <div class="top">
         <div class="title">
           <h1>情绪日历</h1>
-          <p>每天记录情绪，AI会自动生成周报与疗愈路线。</p>
+          <p>每天记录情绪，AI会自动生成周报与疗愈路线。点击日期会按“快乐 → 生气 → 忧伤 → 焦虑 → 平静”循环切换。</p>
         </div>
-
-        <button class="btn" onclick="generateReport()">
-          更新AI分析
-        </button>
+        <div class="toolbar">
+          <select id="yearSelect" onchange="renderCalendar()"></select>
+          <select id="monthSelect" onchange="renderCalendar()"></select>
+          <button class="btn" onclick="generateReport();showPage('weekly',document.querySelectorAll('.nav button')[1])">生成周报</button>
+        </div>
       </div>
-
+      <div class="legend"><span>😊 快乐</span><span>🔥 生气</span><span>💧 忧伤</span><span>🌿 焦虑</span><span>🌙 平静</span></div>
       <div class="calendar" id="calendarGrid"></div>
-
     </section>
 
-    <!-- 周报 -->
-
     <section class="page" id="weekly">
-
       <div class="top">
         <div class="title">
           <h1>我的周报</h1>
           <p>AI 根据你的情绪日历生成趋势分析。</p>
         </div>
-
         <div class="pill">Weekly Report</div>
       </div>
-
       <div class="grid two">
-
         <div class="card">
-
           <h2>本周情绪趋势</h2>
-
-          <div class="bar">
-            😊 快乐
-            <div class="track">
-              <span id="happyBar" style="width:0%"></span>
-            </div>
-          </div>
-
-          <div class="bar">
-            💧 低落
-            <div class="track">
-              <span id="sadBar" style="width:0%"></span>
-            </div>
-          </div>
-
-          <div class="bar">
-            🌿 焦虑
-            <div class="track">
-              <span id="anxBar" style="width:0%"></span>
-            </div>
-          </div>
-
-          <div class="bar">
-            🔥 愤怒
-            <div class="track">
-              <span id="angryBar" style="width:0%"></span>
-            </div>
-          </div>
-
+          <div id="bars"></div>
         </div>
-
         <div class="card">
-
           <h2>AI 推荐路线</h2>
-
-          <div class="route" id="weeklyRoute">
-            暂无数据，请先记录情绪。
-          </div>
-
+          <div class="route" id="weeklyRoute">暂无数据，请先记录情绪。</div>
+          <div class="route-board" id="routeBoard"></div>
         </div>
-
       </div>
-
     </section>
 
-    <!-- 线下参观 -->
-
     <section class="page" id="visit">
-
       <div class="top">
-
         <div class="title">
           <h1>线下参观</h1>
           <p>从四川路桥进入南川大楼，体验情绪疗愈路线。</p>
         </div>
-
         <div class="pill">Offline Experience</div>
-
       </div>
-
       <div class="visit-grid">
-
         <div class="floor-list">
-
-          <button onclick="showFloor('四川路桥入口','领取智能手环，开启今日情绪路线。')">
-            🌉 四川路桥入口
-          </button>
-
-          <button onclick="showFloor('情绪互动装置','白噪音长椅、情绪智能座椅、发光邮筒。')">
-            🎧 桥上互动
-          </button>
-
-          <button onclick="showFloor('情绪舒缓层','呼吸引导、白噪音疗愈、慢节奏灯光。')">
-            💧 2F 情绪舒缓层
-          </button>
-
-          <button onclick="showFloor('快乐激活层','光影互动、认知训练、社区游戏。')">
-            😊 4F 快乐激活层
-          </button>
-
+          <button onclick="showFloor('四川路桥入口','领取智能手环，开启今日情绪路线。')">🌉 四川路桥入口</button>
+          <button onclick="showFloor('情绪互动装置','白噪音长椅、情绪智能座椅、发光邮筒。')">🎧 桥上互动</button>
+          <button onclick="showFloor('情绪舒缓层','呼吸引导、白噪音疗愈、慢节奏灯光。')">💧 2F 情绪舒缓层</button>
+          <button onclick="showFloor('快乐激活层','光影互动、认知训练、社区游戏。')">😊 4F 快乐激活层</button>
         </div>
-
         <div class="floor-detail">
-
-          <h2 id="floorTitle">
-            四川路桥入口
-          </h2>
-
+          <h2 id="floorTitle">四川路桥入口</h2>
           <br>
-
-          <p id="floorText">
-            领取智能手环，开启今日情绪路线。
-          </p>
-
+          <p id="floorText">领取智能手环，开启今日情绪路线。</p>
         </div>
-
       </div>
-
     </section>
 
-    <!-- AI -->
-
     <section class="page" id="ai">
-
       <div class="top">
-
         <div class="title">
           <h1>澄澄AI</h1>
           <p>你的AI情绪管理数字机器人。</p>
         </div>
-
         <div class="pill">DeepSeek AI</div>
-
       </div>
-
       <div class="ai-layout">
-
-        <div class="card">
-
+        <div class="card ai-character">
           <h2>今日 AI 建议</h2>
-
           <br>
-
-          <div id="aiAdvice">
-            你最近还没有记录情绪，建议先完成今天的情绪打卡。
+          <div id="aiAdvice">你最近还没有记录情绪，建议先完成今天的情绪打卡。</div>
+          <div class="chengcheng">
+            <div class="antenna"></div>
+            <div class="arm left"></div>
+            <div class="arm right"></div>
+            <div class="smile"></div>
+            <div class="heart">♡</div>
           </div>
-
+          <div class="character-tags"><span>情绪识别</span><span>路线推荐</span><span>日常陪伴</span><span>疗愈提醒</span></div>
         </div>
-
         <div class="chat">
-
           <div class="chat-box" id="chatBox">
-
-            <div class="msg">
-              <b>澄澄：</b>
-              你好呀，今天想和我聊聊你的心情吗？
-            </div>
-
+            <div class="msg"><b>澄澄：</b>你好呀，今天想和我聊聊你的心情吗？</div>
           </div>
-
           <div class="input-row">
-
-            <input
-              id="chatInput"
-              placeholder="输入你的心情..."
-            >
-
-            <button class="btn" onclick="sendChat()">
-              发送
-            </button>
-
+            <input id="chatInput" placeholder="输入你的心情...">
+            <button class="btn" onclick="sendChat()">发送</button>
           </div>
-
         </div>
-
       </div>
-
     </section>
-
   </main>
-
 </div>
 
 <script>
-
 const pages=document.querySelectorAll(".page");
 const navBtns=document.querySelectorAll(".nav button");
 
 function showPage(id,btn){
-
   pages.forEach(p=>p.classList.remove("active"));
   document.getElementById(id).classList.add("active");
-
   navBtns.forEach(b=>b.classList.remove("active"));
-
   if(btn) btn.classList.add("active");
-
 }
 
-const emotions=["快乐","低落","焦虑","愤怒"];
-const emojis={
+const emotionCycle=[
+  {emotion:"快乐",emoji:"😊"},
+  {emotion:"生气",emoji:"🔥"},
+  {emotion:"忧伤",emoji:"💧"},
+  {emotion:"焦虑",emoji:"🌿"},
+  {emotion:"平静",emoji:"🌙"}
+];
+
+const emojiMap={
   快乐:"😊",
-  低落:"💧",
+  生气:"🔥",
+  忧伤:"💧",
   焦虑:"🌿",
-  愤怒:"🔥"
+  平静:"🌙"
 };
 
 let records={};
+const now=new Date();
+let currentYear=now.getFullYear();
+let currentMonth=now.getMonth()+1;
 
-function renderCalendar(){
-
-  const grid=document.getElementById("calendarGrid");
-
-  grid.innerHTML="";
-
-  for(let i=1;i<=28;i++){
-
-    const r=records[i];
-
-    const div=document.createElement("div");
-
-    div.className="day";
-
-    div.onclick=()=>{
-
-      const randomEmotion=
-      emotions[Math.floor(Math.random()*emotions.length)];
-
-      records[i]={
-        emotion:randomEmotion,
-        emoji:emojis[randomEmotion]
-      };
-
-      document.getElementById("sideEmotion").innerText=randomEmotion;
-
-      renderCalendar();
-
-    };
-
-    div.innerHTML=`
-      <b>5月 ${i}日</b>
-      <div class="dot">
-        ${r?r.emoji:"＋"}
-      </div>
-      <br>
-      <div style="font-size:13px;color:#667085">
-        ${r?r.emotion:"点击记录"}
-      </div>
-    `;
-
-    grid.appendChild(div);
-
-  }
-
+function recordKey(y,m,d){
+  return `${y}-${m}-${d}`;
 }
 
-renderCalendar();
+function initSelectors(){
+  const yearSelect=document.getElementById("yearSelect");
+  const monthSelect=document.getElementById("monthSelect");
+  for(let y=currentYear-3;y<=currentYear+3;y++){
+    yearSelect.innerHTML+=`<option value="${y}">${y}年</option>`;
+  }
+  for(let m=1;m<=12;m++){
+    monthSelect.innerHTML+=`<option value="${m}">${m}月</option>`;
+  }
+  yearSelect.value=currentYear;
+  monthSelect.value=currentMonth;
+}
+
+function renderCalendar(){
+  currentYear=Number(document.getElementById("yearSelect").value);
+  currentMonth=Number(document.getElementById("monthSelect").value);
+  const grid=document.getElementById("calendarGrid");
+  grid.innerHTML="";
+
+  ["日","一","二","三","四","五","六"].forEach(w=>{
+    grid.innerHTML+=`<div class="week">${w}</div>`;
+  });
+
+  const firstDay=new Date(currentYear,currentMonth-1,1).getDay();
+  const totalDays=new Date(currentYear,currentMonth,0).getDate();
+
+  for(let i=0;i<firstDay;i++){
+    grid.innerHTML+=`<div class="day empty"></div>`;
+  }
+
+  for(let d=1;d<=totalDays;d++){
+    const r=records[recordKey(currentYear,currentMonth,d)];
+    const div=document.createElement("div");
+    div.className="day";
+    div.onclick=()=>toggleEmotion(d);
+    div.innerHTML=`
+      <b>${d}日</b>
+      <div class="dot">${r?r.emoji:"＋"}</div>
+      <br>
+      <div style="font-size:13px;color:#667085">${r?r.emotion:"点击记录"}</div>
+    `;
+    grid.appendChild(div);
+  }
+}
+
+function toggleEmotion(day){
+  const k=recordKey(currentYear,currentMonth,day);
+  let nextIndex=0;
+  if(records[k]){
+    const currentIndex=emotionCycle.findIndex(e=>e.emotion===records[k].emotion);
+    nextIndex=(currentIndex+1)%emotionCycle.length;
+  }
+  records[k]=emotionCycle[nextIndex];
+  document.getElementById("sideEmotion").innerText=records[k].emotion;
+  renderCalendar();
+}
 
 function generateReport(){
-
-  let counts={
-    快乐:0,
-    低落:0,
-    焦虑:0,
-    愤怒:0
-  };
+  let counts={快乐:0,生气:0,忧伤:0,焦虑:0,平静:0};
 
   Object.values(records).forEach(r=>{
-    counts[r.emotion]++;
+    if(counts[r.emotion]!==undefined){
+      counts[r.emotion]++;
+    }
   });
 
   let total=Object.values(counts).reduce((a,b)=>a+b,0);
@@ -637,115 +721,134 @@ function generateReport(){
     return;
   }
 
-  document.getElementById("happyBar").style.width=
-  (counts["快乐"]/total*100)+"%";
+  const bars=document.getElementById("bars");
+  bars.innerHTML="";
 
-  document.getElementById("sadBar").style.width=
-  (counts["低落"]/total*100)+"%";
+  emotionCycle.forEach(e=>{
+    const pct=Math.round(counts[e.emotion]/total*100);
+    bars.innerHTML+=`
+      <div class="bar">
+        <div class="bar-head"><span>${e.emoji} ${e.emotion}</span><span>${pct}%</span></div>
+        <div class="track"><span style="width:${pct}%"></span></div>
+      </div>
+    `;
+  });
 
-  document.getElementById("anxBar").style.width=
-  (counts["焦虑"]/total*100)+"%";
+  let topEmotion=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];
+  const route=routeMap(topEmotion);
 
-  document.getElementById("angryBar").style.width=
-  (counts["愤怒"]/total*100)+"%";
+  document.getElementById("weeklyRoute").innerText=`AI检测到你本阶段主要情绪为「${topEmotion}」，建议体验「${route.name}」。`;
+  document.getElementById("sideReco").innerText=route.name;
+  document.getElementById("aiAdvice").innerText=`AI检测到你本阶段主要情绪为「${topEmotion}」，${route.summary}`;
 
-  let topEmotion=
-  Object.entries(counts)
-  .sort((a,b)=>b[1]-a[1])[0][0];
+  document.getElementById("routeBoard").innerHTML=route.steps.map(s=>`
+    <div class="route-card">
+      <div class="route-icon">${s.icon}</div>
+      <div>
+        <h3>${s.title}</h3>
+        <p>${s.text}</p>
+      </div>
+    </div>
+  `).join("");
+}
 
-  const routeMap={
-    快乐:"推荐路线：4F 快乐激活层 → 顶层花园 → 社区互动区。",
-    低落:"推荐路线：2F 情绪舒缓层 → 白噪音长椅 → 金色修复层。",
-    焦虑:"推荐路线：情绪花园 → 呼吸引导区 → 放松疗愈区。",
-    愤怒:"推荐路线：3F 能量释放层 → 运动互动区 → 舒缓区。"
+function routeMap(emotion){
+  const map={
+    快乐:{
+      name:"快乐激活路线",
+      summary:"可以优先进入4F快乐激活层，让积极情绪被放大。",
+      steps:[
+        {icon:"🌉",title:"四川路桥入口",text:"佩戴手环，开启今日情绪路线。"},
+        {icon:"😊",title:"4F 快乐激活层",text:"参与光影互动、认知训练与社区游戏。"},
+        {icon:"🌿",title:"顶层花园",text:"在开放花园中延续轻盈状态。"}
+      ]
+    },
+    生气:{
+      name:"能量释放路线",
+      summary:"可以先释放压力，再进入舒缓区稳定状态。",
+      steps:[
+        {icon:"🔥",title:"3F 能量释放层",text:"通过体感互动和节奏训练释放压力。"},
+        {icon:"💧",title:"2F 情绪舒缓层",text:"用呼吸引导降低情绪强度。"},
+        {icon:"💌",title:"发光情绪邮筒",text:"把难以表达的话投递出去。"}
+      ]
+    },
+    忧伤:{
+      name:"温柔陪伴路线",
+      summary:"适合慢下来，先被陪伴，再逐渐恢复能量。",
+      steps:[
+        {icon:"🎧",title:"白噪音长椅",text:"让城市声音慢下来，降低心理负担。"},
+        {icon:"💧",title:"2F 情绪舒缓层",text:"进入低刺激空间休息与恢复。"},
+        {icon:"🤖",title:"澄澄陪伴站",text:"与AI进行短时情绪对话。"}
+      ]
+    },
+    焦虑:{
+      name:"平静修复路线",
+      summary:"建议通过呼吸、植物和低刺激空间重新建立稳定感。",
+      steps:[
+        {icon:"🌿",title:"顶层情绪花园",text:"用植物、风声和自然光稳定节奏。"},
+        {icon:"🫁",title:"2F 呼吸修复层",text:"进行引导式呼吸疗愈。"},
+        {icon:"📊",title:"情绪报告",text:"生成今日压力状态与调节建议。"}
+      ]
+    },
+    平静:{
+      name:"深度修复路线",
+      summary:"可以进行更深层的睡眠管理、心理咨询和自我整理。",
+      steps:[
+        {icon:"🌙",title:"5F 金色修复层",text:"进行睡眠管理与轻咨询。"},
+        {icon:"🏙️",title:"情绪云端",text:"观看城市情绪光点，感受共情。"},
+        {icon:"☕",title:"社区客厅",text:"完成一次安静的自我整理。"}
+      ]
+    }
   };
-
-  document.getElementById("weeklyRoute").innerText=
-  routeMap[topEmotion];
-
-  document.getElementById("sideReco").innerText=
-  routeMap[topEmotion];
-
-  document.getElementById("aiAdvice").innerText=
-  "AI检测到你本周主要情绪为「"+topEmotion+"」，"+
-  routeMap[topEmotion];
-
+  return map[emotion];
 }
 
 function showFloor(title,text){
-
   document.getElementById("floorTitle").innerText=title;
-
   document.getElementById("floorText").innerText=text;
-
 }
 
 async function sendChat(){
-
   const input=document.getElementById("chatInput");
   const box=document.getElementById("chatBox");
 
   if(!input.value.trim()) return;
 
   const userMessage=input.value;
-
   input.value="";
 
   box.innerHTML+=`
-    <div class="msg">
-      <b>你：</b>${userMessage}
-    </div>
-  `;
-
-  box.innerHTML+=`
-    <div class="msg" id="loading">
-      <b>澄澄：</b>正在思考...
-    </div>
+    <div class="msg"><b>你：</b>${userMessage}</div>
+    <div class="msg" id="loading"><b>澄澄：</b>正在思考...</div>
   `;
 
   box.scrollTop=box.scrollHeight;
 
   try{
-
     const res=await fetch("/api/chat",{
       method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({
-        message:userMessage,
-        records:records
-      })
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({message:userMessage,records:records})
     });
 
     const data=await res.json();
-
     document.getElementById("loading").remove();
 
     box.innerHTML+=`
-      <div class="msg">
-        <b>澄澄：</b>${data.reply}
-      </div>
+      <div class="msg"><b>澄澄：</b>${data.reply || data.error || "我会一直陪着你。"}</div>
     `;
-
   }catch(err){
-
     document.getElementById("loading").remove();
-
     box.innerHTML+=`
-      <div class="msg">
-        <b>澄澄：</b>
-        连接失败了，请稍后再试。
-      </div>
+      <div class="msg"><b>澄澄：</b>连接失败了，请稍后再试。</div>
     `;
-
   }
 
   box.scrollTop=box.scrollHeight;
-
 }
 
+initSelectors();
+renderCalendar();
 </script>
-
 </body>
 </html>

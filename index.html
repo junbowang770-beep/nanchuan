@@ -243,7 +243,7 @@ body{font-family:"Microsoft YaHei",sans-serif;background:linear-gradient(135deg,
           <div class="mood-tip" id="restaurantTip">澄澄AI建议：今天可以选择温暖、低刺激、带来安全感的饮食。</div>
         </div>
         <div class="restaurant-visual">
-          <img src="images/5f-1.png" alt="大白情绪餐厅主视觉" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <img src="images/restaurant-hero.png" alt="大白情绪餐厅主视觉" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
           <div class="placeholder" style="display:none">🍽️</div>
         </div>
       </div>
@@ -299,7 +299,7 @@ body{font-family:"Microsoft YaHei",sans-serif;background:linear-gradient(135deg,
   </main>
 </div>
 
-<script src="https://imgcache.qq.com/qcloud/cloudbase-js-sdk/2.9.1/cloudbase.full.js"></script>
+<script src="https://static.cloudbase.net/cloudbase-js-sdk/latest/cloudbase.full.js"></script>
 <script>
 const cloudbaseApp = cloudbase.init({
   env: "dengngi-nanchuan-d1eb1fk47375dfb"
@@ -325,11 +325,19 @@ const cloudbaseReady = ensureCloudbaseLogin();
 const pages=document.querySelectorAll('.page');const navBtns=document.querySelectorAll('.nav button');
 function showPage(id,btn){pages.forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');navBtns.forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active')}
 const emotionCycle=[{emotion:'快乐',emoji:'😊'},{emotion:'生气',emoji:'🔥'},{emotion:'忧伤',emoji:'💧'},{emotion:'焦虑',emoji:'🌿'},{emotion:'平静',emoji:'🌙'}];
-let records={};const now=new Date();let currentYear=now.getFullYear();let currentMonth=now.getMonth()+1;function recordKey(y,m,d){return `${y}-${m}-${d}`}
-function initSelectors(){const yearSelect=document.getElementById('yearSelect');const monthSelect=document.getElementById('monthSelect');for(let y=currentYear-3;y<=currentYear+3;y++)yearSelect.innerHTML+=`<option value="${y}">${y}年</option>`;for(let m=1;m<=12;m++)monthSelect.innerHTML+=`<option value="${m}">${m}月</option>`;yearSelect.value=currentYear;monthSelect.value=currentMonth}
-function renderCalendar(){currentYear=Number(document.getElementById('yearSelect').value);currentMonth=Number(document.getElementById('monthSelect').value);const grid=document.getElementById('calendarGrid');grid.innerHTML='';['日','一','二','三','四','五','六'].forEach(w=>grid.innerHTML+=`<div class="week">${w}</div>`);const firstDay=new Date(currentYear,currentMonth-1,1).getDay();const totalDays=new Date(currentYear,currentMonth,0).getDate();for(let i=0;i<firstDay;i++)grid.innerHTML+='<div class="day empty"></div>';for(let d=1;d<=totalDays;d++){const r=records[recordKey(currentYear,currentMonth,d)];const div=document.createElement('div');div.className='day';div.onclick=()=>toggleEmotion(d);div.innerHTML=`<b>${d}日</b><div class="dot">${r?r.emoji:'＋'}</div><br><div style="font-size:13px;color:#667085">${r?r.emotion:'点击记录'}</div>`;grid.appendChild(div)}}
+let records={};const now=new Date();let currentYear=now.getFullYear();let currentMonth=now.getMonth()+1;function recordKey(y,m,d){return 
+${y}-${m}-${d}
+}
+function initSelectors(){const yearSelect=document.getElementById('yearSelect');const monthSelect=document.getElementById('monthSelect');for(let y=currentYear-3;y<=currentYear+3;y++)yearSelect.innerHTML+=
+<option value="${y}">${y}年</option>;for(let m=1;m<=12;m++)monthSelect.innerHTML+=<option value="${m}">${m}月</option>
+;yearSelect.value=currentYear;monthSelect.value=currentMonth}
+function renderCalendar(){currentYear=Number(document.getElementById('yearSelect').value);currentMonth=Number(document.getElementById('monthSelect').value);const grid=document.getElementById('calendarGrid');grid.innerHTML='';['日','一','二','三','四','五','六'].forEach(w=>grid.innerHTML+=
+<div class="week">${w}</div>);const firstDay=new Date(currentYear,currentMonth-1,1).getDay();const totalDays=new Date(currentYear,currentMonth,0).getDate();for(let i=0;i<firstDay;i++)grid.innerHTML+='<div class="day empty"></div>';for(let d=1;d<=totalDays;d++){const r=records[recordKey(currentYear,currentMonth,d)];const div=document.createElement('div');div.className='day';div.onclick=()=>toggleEmotion(d);div.innerHTML=<b>${d}日</b><div class="dot">${r?r.emoji:'＋'}</div><br><div style="font-size:13px;color:#667085">${r?r.emotion:'点击记录'}</div>
+;grid.appendChild(div)}}
 function toggleEmotion(day){const k=recordKey(currentYear,currentMonth,day);let nextIndex=0;if(records[k]){const currentIndex=emotionCycle.findIndex(e=>e.emotion===records[k].emotion);nextIndex=(currentIndex+1)%emotionCycle.length}records[k]=emotionCycle[nextIndex];document.getElementById('sideEmotion').innerText=records[k].emotion;renderCalendar();updateRestaurantTip()}
-function generateReport(){let counts={快乐:0,生气:0,忧伤:0,焦虑:0,平静:0};Object.values(records).forEach(r=>{if(counts[r.emotion]!==undefined)counts[r.emotion]++});let total=Object.values(counts).reduce((a,b)=>a+b,0);if(total===0){alert('请先记录情绪');return}const bars=document.getElementById('bars');bars.innerHTML='';emotionCycle.forEach(e=>{const pct=Math.round(counts[e.emotion]/total*100);bars.innerHTML+=`<div class="bar"><div class="bar-head"><span>${e.emoji} ${e.emotion}</span><span>${pct}%</span></div><div class="track"><span style="width:${pct}%"></span></div></div>`});let topEmotion=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];const route=routeMap(topEmotion);document.getElementById('weeklyRoute').innerText=`AI检测到你本阶段主要情绪为「${topEmotion}」，建议体验「${route.name}」。`;document.getElementById('sideReco').innerText=route.name;document.getElementById('aiAdvice').innerText=`AI检测到你本阶段主要情绪为「${topEmotion}」，${route.summary}`;document.getElementById('routeBoard').innerHTML=route.steps.map(s=>`<div class="route-card"><div class="route-icon">${s.icon}</div><div><h3>${s.title}</h3><p>${s.text}</p></div></div>`).join('')}
+function generateReport(){let counts={快乐:0,生气:0,忧伤:0,焦虑:0,平静:0};Object.values(records).forEach(r=>{if(counts[r.emotion]!==undefined)counts[r.emotion]++});let total=Object.values(counts).reduce((a,b)=>a+b,0);if(total===0){alert('请先记录情绪');return}const bars=document.getElementById('bars');bars.innerHTML='';emotionCycle.forEach(e=>{const pct=Math.round(counts[e.emotion]/total*100);bars.innerHTML+=
+<div class="bar"><div class="bar-head"><span>${e.emoji} ${e.emotion}</span><span>${pct}%</span></div><div class="track"><span style="width:${pct}%"></span></div></div>});let topEmotion=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];const route=routeMap(topEmotion);document.getElementById('weeklyRoute').innerText=AI检测到你本阶段主要情绪为「${topEmotion}」，建议体验「${route.name}」。;document.getElementById('sideReco').innerText=route.name;document.getElementById('aiAdvice').innerText=AI检测到你本阶段主要情绪为「${topEmotion}」，${route.summary};document.getElementById('routeBoard').innerHTML=route.steps.map(s=><div class="route-card"><div class="route-icon">${s.icon}</div><div><h3>${s.title}</h3><p>${s.text}</p></div></div>
+).join('')}
 function routeMap(emotion){const map={快乐:{name:'快乐激活路线',summary:'可以优先进入顶层快乐云端，让积极情绪被放大。',steps:[{icon:'🌉',title:'四川路桥入口',text:'佩戴手环，开启今日情绪路线。'},{icon:'😊',title:'顶层快乐云端',text:'参与快乐能量巩固与情绪信箱。'},{icon:'🌿',title:'社区共享区',text:'在开放花园中延续轻盈状态。'}]},生气:{name:'能量释放路线',summary:'可以先释放压力，再进入舒缓区稳定状态。',steps:[{icon:'🔥',title:'3F 神经减压层',text:'通过体感互动和节奏训练释放压力。'},{icon:'💧',title:'2F 呼吸修复层',text:'用呼吸引导降低情绪强度。'},{icon:'💌',title:'发光情绪邮筒',text:'把难以表达的话投递出去。'}]},忧伤:{name:'温柔陪伴路线',summary:'适合慢下来，先被陪伴，再逐渐恢复能量。',steps:[{icon:'🎧',title:'白噪音长椅',text:'让城市声音慢下来。'},{icon:'💧',title:'2F 情绪舒缓层',text:'进入低刺激空间休息。'},{icon:'🤖',title:'澄澄陪伴站',text:'与AI进行短时情绪对话。'}]},焦虑:{name:'平静修复路线',summary:'建议通过呼吸、植物和低刺激空间重新建立稳定感。',steps:[{icon:'🌿',title:'2F 呼吸修复层',text:'进行引导式呼吸疗愈。'},{icon:'🫁',title:'AI呼吸治疗舱',text:'平衡呼吸节奏。'},{icon:'📊',title:'情绪报告',text:'生成今日压力状态与建议。'}]},平静:{name:'深度修复路线',summary:'可以进行更深层的睡眠管理、心理咨询和自我整理。',steps:[{icon:'🌙',title:'5F 社区共愈层',text:'进行睡眠管理与轻咨询。'},{icon:'🏙️',title:'情绪云端',text:'观看城市情绪光点。'},{icon:'☕',title:'社区客厅',text:'完成一次安静整理。'}]}};return map[emotion]}
 
 const visitFloors={
@@ -341,10 +349,18 @@ const visitFloors={
  'top':{title:'顶层 · 快乐云端',sub:'在快乐中巩固疗愈成果，让美好成为日常',img:'images/top-happy.png',hero:'images/top-happy-1.png',detail:'images/top-happy-2.png',desc:'这里是疗愈旅程的最终抵达点。通过快乐能量指数、情绪信箱、日落剧场和共享花园，把短暂治愈转化为持续生活习惯。',tags:['快乐巩固','情绪信箱','日落花园','社区分享'],steps:[['01','快乐能量指数','可视化本周积极状态。'],['02','情绪信箱','写下此刻快乐，让愿望发光。'],['03','快乐沉浸体验','日落剧场、音乐治愈与泡泡互动。'],['04','未来生命建议','AI情绪医生给出生活建议。'],['05','大白陪伴','获得温暖回应，完成旅程。']]}
 };
 let currentVisitFloor='01f';
-function initVisit(){const box=document.getElementById('floorGallery');Object.entries(visitFloors).forEach(([id,f],i)=>{box.innerHTML+=`<button class="floor-tile ${i===0?'active':''}" onclick="showVisitFloor('${id}',this)"><img src="${f.img}" alt="${f.title}"><div class="floor-tile-info"><h3>${f.title}</h3><p>${f.sub}</p></div></button>`});showVisitFloor('01f')}
-function showVisitFloor(id,btn){currentVisitFloor=id;const f=visitFloors[id];document.getElementById('visitHeroImg').src=f.hero;document.getElementById('visitHeroTitle').innerText=f.title;document.getElementById('visitHeroText').innerText=f.sub;document.getElementById('visitMainImg').src=f.detail || f.img;document.getElementById('visitTitle').innerText=f.title;document.getElementById('visitDesc').innerText=f.desc;document.getElementById('visitTags').innerHTML=f.tags.map(t=>`<span>${t}</span>`).join('');document.getElementById('visitSteps').innerHTML=f.steps.map(s=>`<div class="step"><b>${s[0]}</b><div><h4>${s[1]}</h4><div>${s[2]}</div></div></div>`).join('');document.querySelectorAll('.floor-tile').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active')}
-function recommendVisit(emotion,btn){document.querySelectorAll('#visitEmotionButtons button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');const map={快乐:{floor:'top',title:'快乐激活路线',time:'约45分钟',text:'四川路桥入口 → 1F情绪接诊 → 顶层快乐云端 → 社区共享区。适合放大积极情绪，把短暂快乐转化为日常能量。'},生气:{floor:'03f',title:'能量释放路线',time:'约50分钟',text:'四川路桥入口 → 1F情绪接诊 → 3F神经减压层 → 2F呼吸修复层。先释放，再稳定。'},忧伤:{floor:'02f',title:'温柔陪伴路线',time:'约40分钟',text:'白噪音长椅 → 1F情绪接诊 → 2F呼吸修复层 → 澄澄陪伴站。适合慢下来，被温柔接住。'},焦虑:{floor:'02f',title:'平静修复路线',time:'约45分钟',text:'情绪入口 → 2F呼吸修复层 → 气味疗愈花园 → 情绪报告生成。通过呼吸和低刺激空间恢复稳定。'},平静:{floor:'5f',title:'深度修复路线',time:'约60分钟',text:'1F情绪接诊 → 5F社区共愈层 → 顶层情绪云端。适合做更深层的睡眠管理与自我整理。'}};const r=map[emotion];document.getElementById('visitTicket').classList.add('active');document.getElementById('ticketTitle').innerText=`${emotion} · ${r.title}`;document.getElementById('ticketText').innerText=`推荐时长：${r.time}｜${r.text}`;showVisitFloor(r.floor)}
-function askCurrentFloor(){const f=visitFloors[currentVisitFloor];showPage('ai',document.querySelectorAll('.nav button')[3]);askChengcheng(`我现在想参观${f.title}，请根据我的情绪日历判断我适不适合，并给我一句温柔建议。`)}
+function initVisit(){const box=document.getElementById('floorGallery');Object.entries(visitFloors).forEach(([id,f],i)=>{box.innerHTML+=
+<button class="floor-tile ${i===0?'active':''}" onclick="showVisitFloor('${id}',this)"><img src="${f.img}" alt="${f.title}"><div class="floor-tile-info"><h3>${f.title}</h3><p>${f.sub}</p></div></button>
+});showVisitFloor('01f')}
+function showVisitFloor(id,btn){currentVisitFloor=id;const f=visitFloors[id];document.getElementById('visitHeroImg').src=f.hero;document.getElementById('visitHeroTitle').innerText=f.title;document.getElementById('visitHeroText').innerText=f.sub;document.getElementById('visitMainImg').src=f.detail || f.img;document.getElementById('visitTitle').innerText=f.title;document.getElementById('visitDesc').innerText=f.desc;document.getElementById('visitTags').innerHTML=f.tags.map(t=>
+<span>${t}</span>).join('');document.getElementById('visitSteps').innerHTML=f.steps.map(s=><div class="step"><b>${s[0]}</b><div><h4>${s[1]}</h4><div>${s[2]}</div></div></div>
+).join('');document.querySelectorAll('.floor-tile').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active')}
+function recommendVisit(emotion,btn){document.querySelectorAll('#visitEmotionButtons button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');const map={快乐:{floor:'top',title:'快乐激活路线',time:'约45分钟',text:'四川路桥入口 → 1F情绪接诊 → 顶层快乐云端 → 社区共享区。适合放大积极情绪，把短暂快乐转化为日常能量。'},生气:{floor:'03f',title:'能量释放路线',time:'约50分钟',text:'四川路桥入口 → 1F情绪接诊 → 3F神经减压层 → 2F呼吸修复层。先释放，再稳定。'},忧伤:{floor:'02f',title:'温柔陪伴路线',time:'约40分钟',text:'白噪音长椅 → 1F情绪接诊 → 2F呼吸修复层 → 澄澄陪伴站。适合慢下来，被温柔接住。'},焦虑:{floor:'02f',title:'平静修复路线',time:'约45分钟',text:'情绪入口 → 2F呼吸修复层 → 气味疗愈花园 → 情绪报告生成。通过呼吸和低刺激空间恢复稳定。'},平静:{floor:'5f',title:'深度修复路线',time:'约60分钟',text:'1F情绪接诊 → 5F社区共愈层 → 顶层情绪云端。适合做更深层的睡眠管理与自我整理。'}};const r=map[emotion];document.getElementById('visitTicket').classList.add('active');document.getElementById('ticketTitle').innerText=
+${emotion} · ${r.title};document.getElementById('ticketText').innerText=推荐时长：${r.time}｜${r.text}
+;showVisitFloor(r.floor)}
+function askCurrentFloor(){const f=visitFloors[currentVisitFloor];showPage('ai',document.querySelectorAll('.nav button')[3]);askChengcheng(
+我现在想参观${f.title}，请根据我的情绪日历判断我适不适合，并给我一句温柔建议。
+)}
 function askChengcheng(text){const input=document.getElementById('chatInput');input.value=text;input.focus()}
 
 const menuItems=[
@@ -361,24 +377,31 @@ const menuItems=[
 ];
 let cart=[];
 function initRestaurant(){renderMenu('全部');updateRestaurantTip()}
-function renderMenu(type){const grid=document.getElementById('foodGrid');if(!grid)return;grid.innerHTML='';menuItems.filter(item=>type==='全部'||item.type===type).forEach(item=>{grid.innerHTML+=`
+function renderMenu(type){const grid=document.getElementById('foodGrid');if(!grid)return;grid.innerHTML='';menuItems.filter(item=>type==='全部'||item.type===type).forEach(item=>{grid.innerHTML+=
   <div class="food-card">
     <img class="food-image" src="${item.img}" alt="${item.name}" onerror="this.outerHTML='<div class=&quot;food-image placeholder&quot;>🍽️</div>'">
     <div class="food-info">
       <h3>${item.name}</h3>
       <p>${item.desc}</p>
-      <div class="food-tags">${item.tags.map(t=>`<span>${t}</span>`).join('')}</div>
+      <div class="food-tags">${item.tags.map(t=>
+<span>${t}</span>
+).join('')}</div>
       <div class="food-bottom">
         <span class="price">¥${item.price}</span>
         <button class="small-btn" onclick="addCart('${item.name}',${item.price})">点餐</button>
       </div>
     </div>
-  </div>`})}
+  </div>
+})}
 function filterMenu(type,btn){document.querySelectorAll('#restaurantTabs button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');renderMenu(type)}
 function addCart(name,price){cart.push({name,price});renderCart()}
-function renderCart(){const list=document.getElementById('cartList');const total=document.getElementById('cartTotal');if(!list||!total)return;let sum=0;if(cart.length===0){list.innerHTML='<div style="color:#667085;line-height:1.7">还没有点餐。可以先选择一个情绪套餐，或从菜单中添加菜品。</div>';total.innerText='0';return}list.innerHTML='';cart.forEach((item,index)=>{sum+=item.price;list.innerHTML+=`<div class="cart-item"><span>${item.name}</span><span>¥${item.price} <button onclick="removeCart(${index})" style="border:none;background:none;cursor:pointer;color:#ff8098">×</button></span></div>`});total.innerText=sum}
+function renderCart(){const list=document.getElementById('cartList');const total=document.getElementById('cartTotal');if(!list||!total)return;let sum=0;if(cart.length===0){list.innerHTML='<div style="color:#667085;line-height:1.7">还没有点餐。可以先选择一个情绪套餐，或从菜单中添加菜品。</div>';total.innerText='0';return}list.innerHTML='';cart.forEach((item,index)=>{sum+=item.price;list.innerHTML+=
+<div class="cart-item"><span>${item.name}</span><span>¥${item.price} <button onclick="removeCart(${index})" style="border:none;background:none;cursor:pointer;color:#ff8098">×</button></span></div>
+});total.innerText=sum}
 function removeCart(index){cart.splice(index,1);renderCart()}
-function checkoutOrder(){const note=document.getElementById('futureNote')?.value||'';if(cart.length===0){alert('请先选择菜品');return}alert(`下单成功！\n取餐地点：5F 大白情绪餐厅\n预计取餐：15分钟后\n${note?'未来便签：'+note:''}`)}
+function checkoutOrder(){const note=document.getElementById('futureNote')?.value||'';if(cart.length===0){alert('请先选择菜品');return}alert(
+下单成功！\n取餐地点：5F 大白情绪餐厅\n预计取餐：15分钟后\n${note?'未来便签：'+note:''}
+)}
 function updateRestaurantTip(){const tip=document.getElementById('restaurantTip');if(!tip)return;const values=Object.values(records);if(values.length===0){tip.innerText='澄澄AI建议：今天可以选择温暖、低刺激、带来安全感的饮食。';return}const counts={快乐:0,生气:0,忧伤:0,焦虑:0,平静:0};values.forEach(r=>{if(counts[r.emotion]!==undefined)counts[r.emotion]++});const top=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];const map={快乐:'澄澄AI建议：你最近状态积极，适合选择快乐分享套餐、云朵舒芙蕾和情绪气泡水。',生气:'澄澄AI建议：近期能量偏高，适合温热主食与低刺激饮品，帮助情绪慢慢降温。',忧伤:'澄澄AI建议：可以选择安心抱抱饭、热牛奶和陪伴型甜品，让身体先被照顾。',焦虑:'澄澄AI建议：适合白噪音拿铁、深夜陪伴乌冬面和低糖甜品，减少刺激，稳定节奏。',平静:'澄澄AI建议：适合轻食与温和饮品，延续稳定状态，也可以给未来的自己写一张便签。'};tip.innerText=map[top]}
 
 async function sendChat(){
@@ -390,7 +413,9 @@ async function sendChat(){
   const userMessage=input.value;
   input.value='';
 
-  box.innerHTML+=`<div class="msg"><b>你：</b>${userMessage}</div><div class="msg" id="loading"><b>澄澄：</b>正在思考...</div>`;
+  box.innerHTML+=
+<div class="msg"><b>你：</b>${userMessage}</div><div class="msg" id="loading"><b>澄澄：</b>正在思考...</div>
+;
   box.scrollTop=box.scrollHeight;
 
   try{
@@ -408,12 +433,16 @@ async function sendChat(){
     const loading=document.getElementById('loading');
     if(loading) loading.remove();
 
-    box.innerHTML+=`<div class="msg"><b>澄澄：</b>${data.reply||data.error||'我会一直陪着你。'}</div>`;
+    box.innerHTML+=
+<div class="msg"><b>澄澄：</b>${data.reply||data.error||'我会一直陪着你。'}</div>
+;
   }catch(err){
     const loading=document.getElementById('loading');
     if(loading) loading.remove();
     console.error('CloudBase chat error:',err);
-    box.innerHTML+=`<div class="msg"><b>澄澄：</b>连接失败：${err.message || JSON.stringify(err)}</div>`;
+    box.innerHTML+=
+<div class="msg"><b>澄澄：</b>连接失败了，请检查 CloudBase 云函数 chat 是否已部署、环境变量是否配置。</div>
+;
   }
 
   box.scrollTop=box.scrollHeight;

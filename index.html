@@ -299,7 +299,29 @@ body{font-family:"Microsoft YaHei",sans-serif;background:linear-gradient(135deg,
   </main>
 </div>
 
+<script src="https://imgcache.qq.com/qcloud/tcbjs/1.10.10/tcb.js"></script>
 <script>
+const cloudbaseApp = tcb.init({
+  env: "dengngi-nanchuan-d1eb1fk47375dfb"
+});
+
+const cloudbaseAuth = cloudbaseApp.auth({
+  persistence: "local"
+});
+
+async function ensureCloudbaseLogin(){
+  try{
+    const loginState = await cloudbaseAuth.getLoginState();
+    if(!loginState){
+      await cloudbaseAuth.anonymousAuthProvider().signIn();
+    }
+  }catch(err){
+    console.warn("CloudBase 匿名登录失败：", err);
+  }
+}
+
+const cloudbaseReady = ensureCloudbaseLogin();
+
 const pages=document.querySelectorAll('.page');const navBtns=document.querySelectorAll('.nav button');
 function showPage(id,btn){pages.forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');navBtns.forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active')}
 const emotionCycle=[{emotion:'快乐',emoji:'😊'},{emotion:'生气',emoji:'🔥'},{emotion:'忧伤',emoji:'💧'},{emotion:'焦虑',emoji:'🌿'},{emotion:'平静',emoji:'🌙'}];
@@ -359,7 +381,43 @@ function removeCart(index){cart.splice(index,1);renderCart()}
 function checkoutOrder(){const note=document.getElementById('futureNote')?.value||'';if(cart.length===0){alert('请先选择菜品');return}alert(`下单成功！\n取餐地点：5F 大白情绪餐厅\n预计取餐：15分钟后\n${note?'未来便签：'+note:''}`)}
 function updateRestaurantTip(){const tip=document.getElementById('restaurantTip');if(!tip)return;const values=Object.values(records);if(values.length===0){tip.innerText='澄澄AI建议：今天可以选择温暖、低刺激、带来安全感的饮食。';return}const counts={快乐:0,生气:0,忧伤:0,焦虑:0,平静:0};values.forEach(r=>{if(counts[r.emotion]!==undefined)counts[r.emotion]++});const top=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];const map={快乐:'澄澄AI建议：你最近状态积极，适合选择快乐分享套餐、云朵舒芙蕾和情绪气泡水。',生气:'澄澄AI建议：近期能量偏高，适合温热主食与低刺激饮品，帮助情绪慢慢降温。',忧伤:'澄澄AI建议：可以选择安心抱抱饭、热牛奶和陪伴型甜品，让身体先被照顾。',焦虑:'澄澄AI建议：适合白噪音拿铁、深夜陪伴乌冬面和低糖甜品，减少刺激，稳定节奏。',平静:'澄澄AI建议：适合轻食与温和饮品，延续稳定状态，也可以给未来的自己写一张便签。'};tip.innerText=map[top]}
 
-async function sendChat(){const input=document.getElementById('chatInput');const box=document.getElementById('chatBox');if(!input.value.trim())return;const userMessage=input.value;input.value='';box.innerHTML+=`<div class="msg"><b>你：</b>${userMessage}</div><div class="msg" id="loading"><b>澄澄：</b>正在思考...</div>`;box.scrollTop=box.scrollHeight;try{const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:userMessage,records})});const data=await res.json();document.getElementById('loading').remove();box.innerHTML+=`<div class="msg"><b>澄澄：</b>${data.reply||data.error||'我会一直陪着你。'}</div>`}catch(err){document.getElementById('loading').remove();box.innerHTML+=`<div class="msg"><b>澄澄：</b>连接失败了，请稍后再试。</div>`}box.scrollTop=box.scrollHeight}
+async function sendChat(){
+  const input=document.getElementById('chatInput');
+  const box=document.getElementById('chatBox');
+
+  if(!input.value.trim()) return;
+
+  const userMessage=input.value;
+  input.value='';
+
+  box.innerHTML+=`<div class="msg"><b>你：</b>${userMessage}</div><div class="msg" id="loading"><b>澄澄：</b>正在思考...</div>`;
+  box.scrollTop=box.scrollHeight;
+
+  try{
+    await cloudbaseReady;
+
+    const result = await cloudbaseApp.callFunction({
+      name: 'chat',
+      data: {
+        message: userMessage,
+        records: records
+      }
+    });
+
+    const data = result.result || {};
+    const loading=document.getElementById('loading');
+    if(loading) loading.remove();
+
+    box.innerHTML+=`<div class="msg"><b>澄澄：</b>${data.reply||data.error||'我会一直陪着你。'}</div>`;
+  }catch(err){
+    const loading=document.getElementById('loading');
+    if(loading) loading.remove();
+    console.error('CloudBase chat error:',err);
+    box.innerHTML+=`<div class="msg"><b>澄澄：</b>连接失败了，请检查 CloudBase 云函数 chat 是否已部署、环境变量是否配置。</div>`;
+  }
+
+  box.scrollTop=box.scrollHeight;
+}
 
 function registerUser(){
   const name=document.getElementById("loginName").value.trim();

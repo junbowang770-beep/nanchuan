@@ -14,140 +14,27 @@ body{font-family:"Microsoft YaHei",sans-serif;background:linear-gradient(135deg,
 .main{background:rgba(255,255,255,.68);backdrop-filter:blur(20px);border-radius:30px;padding:30px;overflow:auto;box-shadow:0 20px 50px rgba(60,80,120,.15)}.page{display:none}.page.active{display:block}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px;gap:16px}.title h1{font-size:36px;margin-bottom:8px}.title p{color:#667085}.pill{padding:10px 18px;background:white;border-radius:999px;font-size:14px;color:#667085}.toolbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.toolbar select{border:none;background:white;border-radius:999px;padding:12px 18px;font-weight:700;color:#344054}.legend{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}.legend span{background:white;border-radius:999px;padding:8px 12px;font-size:13px;color:#667085}
 .calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}.week{font-size:13px;color:#667085;text-align:center;margin-bottom:4px}.day{min-height:86px;border-radius:22px;background:white;padding:12px;cursor:pointer;transition:.2s;border:2px solid transparent}.day:hover{transform:translateY(-4px);border-color:#ff9aad}.day.empty{background:rgba(255,255,255,.35);cursor:default}.day.empty:hover{transform:none;border-color:transparent}.day b{display:block;margin-bottom:10px}.dot{width:36px;height:36px;border-radius:50%;background:#f4f4f4;display:grid;place-items:center;font-size:18px}
 .grid{display:grid;gap:20px}.grid.two{grid-template-columns:1fr 1fr}.card{background:white;border-radius:28px;padding:24px;box-shadow:0 10px 30px rgba(80,100,130,.08)}.bar{margin-top:18px}.bar-head{display:flex;justify-content:space-between;margin-bottom:8px;font-weight:700}.track{height:14px;border-radius:999px;overflow:hidden;background:#edf1f7}.track span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#ffb65f,#ff8399)}.route{margin-top:18px;padding:18px;border-radius:22px;background:#fff6ea;line-height:1.8;color:#4b556b}.route-board{display:grid;gap:14px;margin-top:18px}.route-card{display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:center;padding:16px;border-radius:22px;background:linear-gradient(135deg,#fff8ec,#ffffff);box-shadow:inset 0 0 0 1px rgba(255,190,120,.25)}.route-icon{width:54px;height:54px;border-radius:18px;display:grid;place-items:center;font-size:26px;background:#fff2d8}.route-card h3{font-size:17px;margin-bottom:5px}.route-card p{font-size:14px;color:#667085;line-height:1.6}
-
-/* 线下参观升级 */
 .visit-hero{position:relative;border-radius:30px;overflow:hidden;min-height:280px;background:#fff;margin-bottom:22px;box-shadow:0 14px 38px rgba(80,100,130,.12)}
 .visit-controls{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px}.emotion-filter,.route-pass{background:white;border-radius:26px;padding:18px;box-shadow:0 10px 30px rgba(80,100,130,.08)}.emotion-filter h3,.route-pass h3{margin-bottom:12px}.emotion-buttons{display:flex;gap:10px;flex-wrap:wrap}.emotion-buttons button{border:none;border-radius:999px;background:#fff6ea;padding:10px 14px;font-weight:800;cursor:pointer;color:#5b4b38;transition:.25s}.emotion-buttons button:hover,.emotion-buttons button.active{background:linear-gradient(135deg,#ffb65f,#ff8399);color:white;transform:translateY(-2px)}.route-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:#667085;font-size:14px;line-height:1.8}.route-line span{background:#f8fafc;border-radius:999px;padding:7px 10px}.route-ticket{display:none;margin-bottom:22px;border-radius:26px;padding:20px;background:linear-gradient(135deg,#fff7e8,#ffffff);box-shadow:0 12px 32px rgba(80,100,130,.1);border:1px solid rgba(255,190,120,.35)}.route-ticket.active{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}.route-ticket h3{margin-bottom:8px}.route-ticket p{color:#667085;line-height:1.7}.ask-ai{margin-top:18px;background:#f8fafc;border-radius:22px;padding:16px;display:flex;align-items:center;justify-content:space-between;gap:12px}.ask-ai span{font-size:14px;color:#667085;line-height:1.6}.ask-ai button{white-space:nowrap}
 .visit-hero img{width:100%;height:320px;object-fit:cover;display:block}.visit-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,35,60,.58),rgba(20,35,60,.12),rgba(255,255,255,.05))}.visit-hero-text{position:absolute;left:32px;top:32px;z-index:2;color:white;max-width:520px}.visit-hero-text h2{font-size:34px;margin-bottom:12px}.visit-hero-text p{line-height:1.8;font-size:16px}.visit-hero-text .btn{margin-top:22px;background:rgba(255,255,255,.92);color:#1f2a44;box-shadow:none}
-.floor-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}.floor-tile{border:none;border-radius:24px;background:white;padding:0;overflow:hidden;cursor:pointer;text-align:left;box-shadow:0 12px 32px rgba(80,100,130,.1);transition:.25s}.floor-tile:hover,.floor-tile.active{transform:translateY(-5px);outline:3px solid rgba(255,150,120,.35)}.floor-tile img{width:100%;height:145px;object-fit:cover;display:block}.floor-tile-info{padding:16px}.floor-tile-info h3{font-size:18px;margin-bottom:6px}.floor-tile-info p{font-size:13px;color:#667085;line-height:1.55}.visit-detail{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}.
-.visit-preview{
-  background:white;
-  border-radius:30px;
-  overflow:hidden;
-  box-shadow:0 12px 32px rgba(80,100,130,.08);
-  aspect-ratio:16/9;
-}
-
-.visit-preview img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  object-position:center;
-  display:block;
-  border-radius:30px;
-}.visit-info{background:white;border-radius:30px;padding:26px}.visit-info h2{font-size:28px;margin-bottom:10px}.visit-info p{color:#667085;line-height:1.8;margin-bottom:18px}.tag-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}.tag-row span{background:#fff4df;color:#8a5b20;border-radius:999px;padding:8px 12px;font-size:13px;font-weight:700}.step-list{display:grid;gap:12px}.step{display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:start;padding:14px;border-radius:18px;background:#f8fafc}.step b{width:42px;height:42px;border-radius:15px;background:linear-gradient(135deg,#ffb65f,#ff8399);display:grid;place-items:center;color:white}.step h4{margin-bottom:4px}.step div{font-size:14px;color:#667085;line-height:1.6}
-
-
-/* 情绪餐厅 */
-.restaurant-layout{display:grid;grid-template-columns:1fr 340px;gap:22px;align-items:start}
-.restaurant-hero{border-radius:30px;background:linear-gradient(135deg,#fff7e8,#ffffff);padding:26px;margin-bottom:22px;display:grid;grid-template-columns:1.1fr .9fr;gap:20px;box-shadow:0 14px 38px rgba(80,100,130,.1);overflow:hidden}
-.restaurant-hero h2{font-size:32px;margin-bottom:10px}.restaurant-hero p{color:#667085;line-height:1.8}.mood-tip{margin-top:18px;border-radius:22px;padding:18px;background:white;color:#5b4b38;line-height:1.7}.restaurant-visual{border-radius:26px;background:rgba(255,255,255,.75);min-height:220px;display:grid;place-items:center;overflow:hidden}.restaurant-visual img{width:100%;height:100%;object-fit:cover;display:block}.restaurant-visual .placeholder{font-size:52px;opacity:.65}
-.restaurant-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}.restaurant-tabs button{border:none;border-radius:999px;background:white;padding:10px 15px;font-weight:800;cursor:pointer;color:#5b4b38;transition:.25s}.restaurant-tabs button:hover,.restaurant-tabs button.active{background:linear-gradient(135deg,#ffb65f,#ff8399);color:white;transform:translateY(-2px)}
-.package-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}.package-card{background:white;border-radius:24px;padding:20px;box-shadow:0 10px 28px rgba(80,100,130,.08)}.package-card h3{margin-bottom:8px}.package-card p{color:#667085;font-size:14px;line-height:1.6;margin-bottom:14px}
-.food-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.food-card{background:white;border-radius:26px;overflow:hidden;box-shadow:0 10px 28px rgba(80,100,130,.08);transition:.25s}.food-card:hover{transform:translateY(-4px)}.food-image{width:100%;height:210px;object-fit:cover;display:block;background:linear-gradient(135deg,#fff0d8,#f7fbff)}.food-image.placeholder{display:grid;place-items:center;font-size:46px;color:#c9b99f}.food-info{padding:18px}.food-info h3{font-size:19px;margin-bottom:6px}.food-info p{color:#667085;font-size:14px;line-height:1.6;min-height:44px}.food-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.food-tags span{font-size:12px;border-radius:999px;background:#fff6ea;color:#8a5b20;padding:6px 9px}.food-bottom{margin-top:16px;display:flex;justify-content:space-between;align-items:center}.price{font-size:20px;font-weight:900;color:#2d3445}.small-btn{border:none;border-radius:999px;padding:10px 16px;background:linear-gradient(135deg,#ffb65f,#ff8399);color:white;font-weight:800;cursor:pointer}
-.cart-panel{position:sticky;top:0;background:white;border-radius:30px;padding:22px;box-shadow:0 12px 32px rgba(80,100,130,.1)}.cart-panel h2{margin-bottom:14px}.cart-list{display:grid;gap:10px;min-height:120px}.cart-item{display:flex;justify-content:space-between;gap:12px;padding:12px;border-radius:16px;background:#f8fafc;color:#4b556b;font-size:14px}.cart-total{margin-top:16px;border-top:1px solid #eef2f7;padding-top:16px;font-size:20px;font-weight:900;display:flex;justify-content:space-between}.checkout-btn{width:100%;margin-top:16px;border:none;border-radius:18px;padding:15px;background:linear-gradient(135deg,#ffb65f,#ff8399);color:white;font-size:17px;font-weight:900;cursor:pointer}.note-box{margin-top:16px;border-radius:20px;background:#fff7e8;padding:16px}.note-box textarea{width:100%;min-height:82px;border:none;background:white;border-radius:16px;padding:12px;resize:none;font-family:inherit}.note-box p{font-size:13px;color:#667085;line-height:1.6;margin-bottom:10px}
-
+.floor-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}.floor-tile{border:none;border-radius:24px;background:white;padding:0;overflow:hidden;cursor:pointer;text-align:left;box-shadow:0 12px 32px rgba(80,100,130,.1);transition:.25s}.floor-tile:hover,.floor-tile.active{transform:translateY(-5px);outline:3px solid rgba(255,150,120,.35)}.floor-tile img{width:100%;height:145px;object-fit:cover;display:block}.floor-tile-info{padding:16px}.floor-tile-info h3{font-size:18px;margin-bottom:6px}.floor-tile-info p{font-size:13px;color:#667085;line-height:1.55}.visit-detail{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}.visit-preview{background:white;border-radius:30px;overflow:hidden;box-shadow:0 12px 32px rgba(80,100,130,.08);aspect-ratio:16/9}.visit-preview img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;border-radius:30px}.visit-info{background:white;border-radius:30px;padding:26px}.visit-info h2{font-size:28px;margin-bottom:10px}.visit-info p{color:#667085;line-height:1.8;margin-bottom:18px}.tag-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}.tag-row span{background:#fff4df;color:#8a5b20;border-radius:999px;padding:8px 12px;font-size:13px;font-weight:700}.step-list{display:grid;gap:12px}.step{display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:start;padding:14px;border-radius:18px;background:#f8fafc}.step b{width:42px;height:42px;border-radius:15px;background:linear-gradient(135deg,#ffb65f,#ff8399);display:grid;place-items:center;color:white}.step h4{margin-bottom:4px}.step div{font-size:14px;color:#667085;line-height:1.6}
+.restaurant-layout{display:grid;grid-template-columns:1fr 340px;gap:22px;align-items:start}.restaurant-hero{border-radius:30px;background:linear-gradient(135deg,#fff7e8,#ffffff);padding:26px;margin-bottom:22px;display:grid;grid-template-columns:1.1fr .9fr;gap:20px;box-shadow:0 14px 38px rgba(80,100,130,.1);overflow:hidden}.restaurant-hero h2{font-size:32px;margin-bottom:10px}.restaurant-hero p{color:#667085;line-height:1.8}.mood-tip{margin-top:18px;border-radius:22px;padding:18px;background:white;color:#5b4b38;line-height:1.7}.restaurant-visual{border-radius:26px;background:rgba(255,255,255,.75);min-height:220px;display:grid;place-items:center;overflow:hidden}.restaurant-visual img{width:100%;height:100%;object-fit:cover;display:block}.restaurant-visual .placeholder{font-size:52px;opacity:.65}.restaurant-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}.restaurant-tabs button{border:none;border-radius:999px;background:white;padding:10px 15px;font-weight:800;cursor:pointer;color:#5b4b38;transition:.25s}.restaurant-tabs button:hover,.restaurant-tabs button.active{background:linear-gradient(135deg,#ffb65f,#ff8399);color:white;transform:translateY(-2px)}.package-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}.package-card{background:white;border-radius:24px;padding:20px;box-shadow:0 10px 28px rgba(80,100,130,.08)}.package-card h3{margin-bottom:8px}.package-card p{color:#667085;font-size:14px;line-height:1.6;margin-bottom:14px}.food-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.food-card{background:white;border-radius:26px;overflow:hidden;box-shadow:0 10px 28px rgba(80,100,130,.08);transition:.25s}.food-card:hover{transform:translateY(-4px)}.food-image{width:100%;height:210px;object-fit:cover;display:block;background:linear-gradient(135deg,#fff0d8,#f7fbff)}.food-image.placeholder{display:grid;place-items:center;font-size:46px;color:#c9b99f}.food-info{padding:18px}.food-info h3{font-size:19px;margin-bottom:6px}.food-info p{color:#667085;font-size:14px;line-height:1.6;min-height:44px}.food-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.food-tags span{font-size:12px;border-radius:999px;background:#fff6ea;color:#8a5b20;padding:6px 9px}.food-bottom{margin-top:16px;display:flex;justify-content:space-between;align-items:center}.price{font-size:20px;font-weight:900;color:#2d3445}.small-btn{border:none;border-radius:999px;padding:10px 16px;background:linear-gradient(135deg,#ffb65f,#ff8399);color:white;font-weight:800;cursor:pointer}.cart-panel{position:sticky;top:0;background:white;border-radius:30px;padding:22px;box-shadow:0 12px 32px rgba(80,100,130,.1)}.cart-panel h2{margin-bottom:14px}.cart-list{display:grid;gap:10px;min-height:120px}.cart-item{display:flex;justify-content:space-between;gap:12px;padding:12px;border-radius:16px;background:#f8fafc;color:#4b556b;font-size:14px}.cart-total{margin-top:16px;border-top:1px solid #eef2f7;padding-top:16px;font-size:20px;font-weight:900;display:flex;justify-content:space-between}.checkout-btn{width:100%;margin-top:16px;border:none;border-radius:18px;padding:15px;background:linear-gradient(135deg,#ffb65f,#ff8399);color:white;font-size:17px;font-weight:900;cursor:pointer}.note-box{margin-top:16px;border-radius:20px;background:#fff7e8;padding:16px}.note-box textarea{width:100%;min-height:82px;border:none;background:white;border-radius:16px;padding:12px;resize:none;font-family:inherit}.note-box p{font-size:13px;color:#667085;line-height:1.6;margin-bottom:10px}
 .ai-layout{display:grid;grid-template-columns:380px 1fr;gap:20px}.ai-character{position:relative;overflow:hidden;min-height:520px;background:linear-gradient(180deg,#fffaf0,#ffffff)}.chengcheng{width:210px;height:240px;margin:24px auto;border-radius:48% 48% 42% 42%;background:linear-gradient(145deg,#fff,#f3efe7);box-shadow:0 24px 60px rgba(130,110,80,.18), inset 0 0 24px rgba(255,255,255,.9);position:relative;display:grid;place-items:center}.chengcheng:before,.chengcheng:after{content:"";position:absolute;top:94px;width:22px;height:22px;border-radius:50%;background:#2c3446}.chengcheng:before{left:62px}.chengcheng:after{right:62px}.smile{position:absolute;top:128px;width:42px;height:22px;border-bottom:4px solid #2c3446;border-radius:0 0 99px 99px}.antenna{position:absolute;top:-48px;left:50%;width:8px;height:52px;background:#f0e7d7;border-radius:99px;transform:translateX(-50%)}.antenna:before{content:"";position:absolute;top:-16px;left:50%;transform:translateX(-50%);width:26px;height:26px;border-radius:50%;background:white;box-shadow:0 0 18px rgba(255,210,130,.8)}.heart{position:absolute;bottom:58px;width:54px;height:54px;border-radius:18px;background:#fff4df;display:grid;place-items:center;color:#ff8ba0;font-size:26px;box-shadow:0 0 24px rgba(255,190,150,.35)}.arm{position:absolute;width:60px;height:112px;background:linear-gradient(145deg,#fff,#eee8dd);border-radius:40px;top:104px}.arm.left{left:-34px;transform:rotate(18deg)}.arm.right{right:-34px;transform:rotate(-18deg)}.character-tags{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}.character-tags span{background:rgba(255,255,255,.76);border-radius:18px;padding:12px;text-align:center;color:#667085;font-size:13px}.chat{background:white;border-radius:30px;padding:24px;display:flex;flex-direction:column;height:520px}.chat-box{flex:1;overflow:auto;margin-bottom:20px}.msg{margin-bottom:16px;line-height:1.7}.input-row{display:flex;gap:12px}.input-row input{flex:1;border:none;border-radius:999px;padding:16px;background:#f5f7fb}.btn{border:none;border-radius:999px;padding:14px 24px;background:linear-gradient(135deg,#ffb65f,#ff8399);color:white;font-weight:800;cursor:pointer}
-
-/* 登录注册弹窗 */
-.login-mask{
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  background:linear-gradient(135deg,#fff1d7,#ebf8ff,#f6edff);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:24px;
-}
-
-.login-card{
-  width:430px;
-  max-width:100%;
-  background:rgba(255,255,255,.78);
-  backdrop-filter:blur(22px);
-  border-radius:34px;
-  padding:38px;
-  box-shadow:0 24px 70px rgba(60,80,120,.18);
-  text-align:center;
-}
-
-.login-card h1{
-  font-size:34px;
-  margin-bottom:10px;
-}
-
-.login-card p{
-  color:#667085;
-  margin-bottom:24px;
-  line-height:1.7;
-}
-
-.login-card input{
-  width:100%;
-  border:none;
-  border-radius:18px;
-  padding:15px 18px;
-  margin-bottom:14px;
-  background:white;
-  font-size:15px;
-  outline:none;
-}
-
-.login-card button{
-  width:100%;
-  border:none;
-  border-radius:999px;
-  padding:14px;
-  margin-top:10px;
-  background:linear-gradient(135deg,#ffb65f,#ff8399);
-  color:white;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.login-card .ghost-login{
-  background:white!important;
-  color:#4b556b!important;
-}
-
-.login-tip{
-  margin-top:16px;
-  color:#98a2b3;
-  font-size:13px;
-  line-height:1.6;
-}
-
-.logout-btn{
-  width:100%;
-  border:none;
-  border-radius:999px;
-  padding:10px 14px;
-  background:linear-gradient(135deg,#ffb65f,#ff8399);
-  color:white;
-  font-weight:800;
-  cursor:pointer;
-  margin-top:12px;
-}
-
+.login-mask{position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#fff1d7,#ebf8ff,#f6edff);display:flex;align-items:center;justify-content:center;padding:24px}.login-card{width:430px;max-width:100%;background:rgba(255,255,255,.78);backdrop-filter:blur(22px);border-radius:34px;padding:38px;box-shadow:0 24px 70px rgba(60,80,120,.18);text-align:center}.login-card h1{font-size:34px;margin-bottom:10px}.login-card p{color:#667085;margin-bottom:24px;line-height:1.7}.login-card input{width:100%;border:none;border-radius:18px;padding:15px 18px;margin-bottom:14px;background:white;font-size:15px;outline:none}.login-card button{width:100%;border:none;border-radius:999px;padding:14px;margin-top:10px;background:linear-gradient(135deg,#ffb65f,#ff8399);color:white;font-weight:900;cursor:pointer}.login-card .ghost-login{background:white!important;color:#4b556b!important}.login-tip{margin-top:16px;color:#98a2b3;font-size:13px;line-height:1.6}.logout-btn{width:100%;border:none;border-radius:999px;padding:10px 14px;background:linear-gradient(135deg,#ffb65f,#ff8399);color:white;font-weight:800;cursor:pointer;margin-top:12px}
 @media(max-width:1000px){body{overflow:auto}.app{grid-template-columns:1fr;height:auto}.grid.two,.ai-layout,.visit-detail,.visit-controls,.restaurant-layout,.restaurant-hero{grid-template-columns:1fr}.calendar{grid-template-columns:repeat(2,1fr)}.floor-gallery,.package-grid,.food-grid{grid-template-columns:1fr}.visit-hero img,.visit-preview img{height:260px}.route-ticket.active{grid-template-columns:1fr}}
 </style>
 </head>
 
 <body>
-
 <div class="login-mask" id="loginMask">
   <div class="login-card">
     <h1>南川大楼</h1>
     <p>请先建立你的情绪档案，开启专属的情绪疗愈旅程。</p>
-
     <input id="loginName" placeholder="昵称">
     <input id="loginEmail" placeholder="邮箱 / 手机号">
     <input id="loginPassword" type="password" placeholder="密码">
-
     <button onclick="registerUser()">创建情绪档案</button>
     <button class="ghost-login" onclick="loginUser()">继续我的疗愈旅程</button>
-
     <div class="login-tip">演示版登录：账号信息仅保存在当前浏览器中，不会上传服务器。</div>
   </div>
 </div>
@@ -170,128 +57,30 @@ body{font-family:"Microsoft YaHei",sans-serif;background:linear-gradient(135deg,
       <button class="logout-btn" onclick="logoutUser()">退出登录</button>
     </div>
   </aside>
-
   <main class="main">
     <section class="page active" id="calendar">
-      <div class="top">
-        <div class="title"><h1>情绪日历</h1><p>每天记录情绪，AI会自动生成周报与疗愈路线。点击日期会按“快乐 → 生气 → 忧伤 → 焦虑 → 平静”循环切换。</p></div>
-        <div class="toolbar"><select id="yearSelect" onchange="renderCalendar()"></select><select id="monthSelect" onchange="renderCalendar()"></select><button class="btn" onclick="generateReport();showPage('weekly',document.querySelectorAll('.nav button')[1])">生成周报</button></div>
-      </div>
+      <div class="top"><div class="title"><h1>情绪日历</h1><p>每天记录情绪，AI会自动生成周报与疗愈路线。点击日期会按“快乐 → 生气 → 忧伤 → 焦虑 → 平静”循环切换。</p></div><div class="toolbar"><select id="yearSelect" onchange="renderCalendar()"></select><select id="monthSelect" onchange="renderCalendar()"></select><button class="btn" onclick="generateReport();showPage('weekly',document.querySelectorAll('.nav button')[1])">生成周报</button></div></div>
       <div class="legend"><span>😊 快乐</span><span>🔥 生气</span><span>💧 忧伤</span><span>🌿 焦虑</span><span>🌙 平静</span></div>
       <div class="calendar" id="calendarGrid"></div>
     </section>
-
     <section class="page" id="weekly">
       <div class="top"><div class="title"><h1>我的周报</h1><p>AI 根据你的情绪日历生成趋势分析。</p></div><div class="pill">Weekly Report</div></div>
       <div class="grid two"><div class="card"><h2>本周情绪趋势</h2><div id="bars"></div></div><div class="card"><h2>AI 推荐路线</h2><div class="route" id="weeklyRoute">暂无数据，请先记录情绪。</div><div class="route-board" id="routeBoard"></div></div></div>
     </section>
-
     <section class="page" id="visit">
       <div class="top"><div class="title"><h1>线下参观</h1><p>根据楼层内容生成沉浸式参观导览，点击楼层查看空间、流程与情绪功能。</p></div><div class="pill">Offline Experience</div></div>
-      <div class="visit-hero">
-        <img id="visitHeroImg" src="images/top-happy.png" alt="顶层快乐云端">
-        <div class="visit-hero-text"><h2 id="visitHeroTitle">顶层 · 未来情绪中枢</h2><p id="visitHeroText">在快乐中巩固疗愈成果，让美好成为日常。这里是整个南川大楼旅程的最终抵达点。</p><button class="btn" onclick="showVisitFloor('5f')">查看推荐路线</button></div>
-      </div>
-      <div class="visit-controls">
-        <div class="emotion-filter">
-          <h3>按情绪推荐路线</h3>
-          <div class="emotion-buttons" id="visitEmotionButtons">
-            <button onclick="recommendVisit('快乐',this)">😊 快乐</button>
-            <button onclick="recommendVisit('生气',this)">🔥 生气</button>
-            <button onclick="recommendVisit('忧伤',this)">💧 忧伤</button>
-            <button onclick="recommendVisit('焦虑',this)">🌿 焦虑</button>
-            <button onclick="recommendVisit('平静',this)">🌙 平静</button>
-          </div>
-        </div>
-        <div class="route-pass">
-          <h3>完整参观顺序</h3>
-          <div class="route-line"><span>地铁口</span>→<span>四川路桥</span>→<span>1F接诊</span>→<span>推荐楼层</span>→<span>顶层云端</span></div>
-        </div>
-      </div>
-      <div class="route-ticket" id="visitTicket">
-        <div>
-          <h3 id="ticketTitle">我的参观路线卡</h3>
-          <p id="ticketText">选择一种情绪后，系统会生成你的专属线下参观路线。</p>
-        </div>
-        <button class="btn" onclick="showPage('ai',document.querySelectorAll('.nav button')[3]);askChengcheng('我适合今天这条线下参观路线吗？')">问澄澄</button>
-      </div>
+      <div class="visit-hero"><img id="visitHeroImg" src="images/top-happy.png" alt="顶层快乐云端"><div class="visit-hero-text"><h2 id="visitHeroTitle">顶层 · 未来情绪中枢</h2><p id="visitHeroText">在快乐中巩固疗愈成果，让美好成为日常。这里是整个南川大楼旅程的最终抵达点。</p><button class="btn" onclick="showVisitFloor('5f')">查看推荐路线</button></div></div>
+      <div class="visit-controls"><div class="emotion-filter"><h3>按情绪推荐路线</h3><div class="emotion-buttons" id="visitEmotionButtons"><button onclick="recommendVisit('快乐',this)">😊 快乐</button><button onclick="recommendVisit('生气',this)">🔥 生气</button><button onclick="recommendVisit('忧伤',this)">💧 忧伤</button><button onclick="recommendVisit('焦虑',this)">🌿 焦虑</button><button onclick="recommendVisit('平静',this)">🌙 平静</button></div></div><div class="route-pass"><h3>完整参观顺序</h3><div class="route-line"><span>地铁口</span>→<span>四川路桥</span>→<span>1F接诊</span>→<span>推荐楼层</span>→<span>顶层云端</span></div></div></div>
+      <div class="route-ticket" id="visitTicket"><div><h3 id="ticketTitle">我的参观路线卡</h3><p id="ticketText">选择一种情绪后，系统会生成你的专属线下参观路线。</p></div><button class="btn" onclick="showPage('ai',document.querySelectorAll('.nav button')[3]);askChengcheng('我适合今天这条线下参观路线吗？')">问澄澄</button></div>
       <div class="floor-gallery" id="floorGallery"></div>
-      <div class="visit-detail">
-        <div class="visit-preview"><img id="visitMainImg" src="images/01f.png" alt="楼层空间预览"></div>
-        <div class="visit-info">
-          <h2 id="visitTitle">01F 情绪接诊中心</h2>
-          <p id="visitDesc">这里是进入南川大楼的第一站，通过手环读取、情绪识别与AI接诊，让情绪第一次被看见。</p>
-          <div class="tag-row" id="visitTags"></div>
-          <h3>体验流程</h3><br>
-          <div class="step-list" id="visitSteps"></div>
-          <div class="ask-ai"><span>不确定是否适合这一层？可以让澄澄根据你的情绪日历帮你判断。</span><button class="btn" onclick="askCurrentFloor()">问澄澄</button></div>
-        </div>
-      </div>
+      <div class="visit-detail"><div class="visit-preview"><img id="visitMainImg" src="images/01f.png" alt="楼层空间预览"></div><div class="visit-info"><h2 id="visitTitle">01F 情绪接诊中心</h2><p id="visitDesc">这里是进入南川大楼的第一站，通过手环读取、情绪识别与AI接诊，让情绪第一次被看见。</p><div class="tag-row" id="visitTags"></div><h3>体验流程</h3><br><div class="step-list" id="visitSteps"></div><div class="ask-ai"><span>不确定是否适合这一层？可以让澄澄根据你的情绪日历帮你判断。</span><button class="btn" onclick="askCurrentFloor()">问澄澄</button></div></div></div>
     </section>
-
-
     <section class="page" id="restaurant">
-      <div class="top">
-        <div class="title"><h1>情绪餐厅</h1><p>线上点单服务：根据情绪日历与周报，为你推荐合适的主食、甜品、饮品与到店座位。</p></div>
-        <div class="pill">Hug & Heal Dining</div>
-      </div>
-
-      <div class="restaurant-hero">
-        <div>
-          <h2>大白情绪餐厅 · 今日疗愈菜单</h2>
-          <p>这里不是普通餐厅，而是南川大楼的情绪饮食疗愈系统。澄澄会结合你的情绪记录，推荐更适合当下状态的食物、饮品和用餐空间。</p>
-          <div class="mood-tip" id="restaurantTip">澄澄AI建议：今天可以选择温暖、低刺激、带来安全感的饮食。</div>
-        </div>
-        <div class="restaurant-visual">
-          <img src="images/restaurant-hero.png" alt="大白情绪餐厅主视觉" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <div class="placeholder" style="display:none">🍽️</div>
-        </div>
-      </div>
-
-      <div class="restaurant-tabs" id="restaurantTabs">
-        <button class="active" onclick="filterMenu('全部',this)">全部</button>
-        <button onclick="filterMenu('主食',this)">主食</button>
-        <button onclick="filterMenu('甜品',this)">甜品</button>
-        <button onclick="filterMenu('饮品',this)">饮品</button>
-        <button onclick="filterMenu('情绪套餐',this)">情绪套餐</button>
-      </div>
-
-      <div class="restaurant-layout">
-        <div>
-          <div class="package-grid">
-            <div class="package-card">
-              <h3>🌿 焦虑恢复套餐</h3>
-              <p>白噪音拿铁 + 深夜陪伴乌冬面，适合焦虑、睡前紧张、压力堆积。</p>
-              <button class="small-btn" onclick="addCart('焦虑恢复套餐',88)">加入购物车</button>
-            </div>
-            <div class="package-card">
-              <h3>😊 快乐分享套餐</h3>
-              <p>情绪气泡水 + 云朵舒芙蕾，适合朋友同行、积极状态巩固。</p>
-              <button class="small-btn" onclick="addCart('快乐分享套餐',98)">加入购物车</button>
-            </div>
-            <div class="package-card">
-              <h3>🌙 睡眠修复套餐</h3>
-              <p>晚安月光热牛奶 + 情绪恢复可可，适合疲惫、低落、失眠修复。</p>
-              <button class="small-btn" onclick="addCart('睡眠修复套餐',76)">加入购物车</button>
-            </div>
-          </div>
-
-          <div class="food-grid" id="foodGrid"></div>
-        </div>
-
-        <aside class="cart-panel">
-          <h2>我的订单</h2>
-          <div class="cart-list" id="cartList"><div style="color:#667085;line-height:1.7">还没有点餐。可以先选择一个情绪套餐，或从菜单中添加菜品。</div></div>
-          <div class="cart-total"><span>总计</span><span>¥<b id="cartTotal">0</b></span></div>
-          <button class="checkout-btn" onclick="checkoutOrder()">立即下单</button>
-          <div class="note-box">
-            <p>给未来的自己留一句话，取餐时会显示在情绪便签上。</p>
-            <textarea id="futureNote" placeholder="比如：今晚早点睡，明天也要好好呼吸。"></textarea>
-          </div>
-        </aside>
-      </div>
+      <div class="top"><div class="title"><h1>情绪餐厅</h1><p>线上点单服务：根据情绪日历与周报，为你推荐合适的主食、甜品、饮品与到店座位。</p></div><div class="pill">Hug & Heal Dining</div></div>
+      <div class="restaurant-hero"><div><h2>大白情绪餐厅 · 今日疗愈菜单</h2><p>这里不是普通餐厅，而是南川大楼的情绪饮食疗愈系统。澄澄会结合你的情绪记录，推荐更适合当下状态的食物、饮品和用餐空间。</p><div class="mood-tip" id="restaurantTip">澄澄AI建议：今天可以选择温暖、低刺激、带来安全感的饮食。</div></div><div class="restaurant-visual"><img src="images/restaurant-hero.png" alt="大白情绪餐厅主视觉" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="placeholder" style="display:none">🍽️</div></div></div>
+      <div class="restaurant-tabs" id="restaurantTabs"><button class="active" onclick="filterMenu('全部',this)">全部</button><button onclick="filterMenu('主食',this)">主食</button><button onclick="filterMenu('甜品',this)">甜品</button><button onclick="filterMenu('饮品',this)">饮品</button><button onclick="filterMenu('情绪套餐',this)">情绪套餐</button></div>
+      <div class="restaurant-layout"><div><div class="package-grid"><div class="package-card"><h3>🌿 焦虑恢复套餐</h3><p>白噪音拿铁 + 深夜陪伴乌冬面，适合焦虑、睡前紧张、压力堆积。</p><button class="small-btn" onclick="addCart('焦虑恢复套餐',88)">加入购物车</button></div><div class="package-card"><h3>😊 快乐分享套餐</h3><p>情绪气泡水 + 云朵舒芙蕾，适合朋友同行、积极状态巩固。</p><button class="small-btn" onclick="addCart('快乐分享套餐',98)">加入购物车</button></div><div class="package-card"><h3>🌙 睡眠修复套餐</h3><p>晚安月光热牛奶 + 情绪恢复可可，适合疲惫、低落、失眠修复。</p><button class="small-btn" onclick="addCart('睡眠修复套餐',76)">加入购物车</button></div></div><div class="food-grid" id="foodGrid"></div></div><aside class="cart-panel"><h2>我的订单</h2><div class="cart-list" id="cartList"><div style="color:#667085;line-height:1.7">还没有点餐。可以先选择一个情绪套餐，或从菜单中添加菜品。</div></div><div class="cart-total"><span>总计</span><span>¥<b id="cartTotal">0</b></span></div><button class="checkout-btn" onclick="checkoutOrder()">立即下单</button><div class="note-box"><p>给未来的自己留一句话，取餐时会显示在情绪便签上。</p><textarea id="futureNote" placeholder="比如：今晚早点睡，明天也要好好呼吸。"></textarea></div></aside></div>
     </section>
-
     <section class="page" id="ai">
       <div class="top"><div class="title"><h1>澄澄AI</h1><p>你的AI情绪管理数字机器人。</p></div><div class="pill">DeepSeek AI</div></div>
       <div class="ai-layout"><div class="card ai-character"><h2>今日 AI 建议</h2><br><div id="aiAdvice">你最近还没有记录情绪，建议先完成今天的情绪打卡。</div><div class="chengcheng"><div class="antenna"></div><div class="arm left"></div><div class="arm right"></div><div class="smile"></div><div class="heart">♡</div></div><div class="character-tags"><span>情绪识别</span><span>路线推荐</span><span>日常陪伴</span><span>疗愈提醒</span></div></div><div class="chat"><div class="chat-box" id="chatBox"><div class="msg"><b>澄澄：</b>你好呀，今天想和我聊聊你的心情吗？</div></div><div class="input-row"><input id="chatInput" placeholder="输入你的心情..."><button class="btn" onclick="sendChat()">发送</button></div></div></div>
@@ -299,46 +88,142 @@ body{font-family:"Microsoft YaHei",sans-serif;background:linear-gradient(135deg,
   </main>
 </div>
 
-<script src="https://static.cloudbase.net/cloudbase-js-sdk/latest/cloudbase.full.js"></script>
 <script>
-const cloudbaseApp = cloudbase.init({
-  env: "dengngi-nanchuan-d1eb1fk47375dfb"
-});
+const ENV_ID = "dengngi-nanchuan-d1eb1fk47375dfb";
+let cloudbaseApp = null;
+let cloudbaseReady = Promise.resolve();
 
-const cloudbaseAuth = cloudbaseApp.auth({
-  persistence: "local"
-});
+function loadScript(src){
+  return new Promise((resolve,reject)=>{
+    const s=document.createElement("script");
+    s.src=src;
+    s.onload=resolve;
+    s.onerror=reject;
+    document.head.appendChild(s);
+  });
+}
 
-async function ensureCloudbaseLogin(){
-  try{
-    const loginState = await cloudbaseAuth.getLoginState();
-    if(!loginState){
-      await cloudbaseAuth.anonymousAuthProvider().signIn();
+async function initCloudbase(){
+  const urls=[
+    "https://static.cloudbase.net/cloudbase-js-sdk/2.9.1/cloudbase.full.js",
+    "https://imgcache.qq.com/qcloud/cloudbase-js-sdk/2.9.1/cloudbase.full.js",
+    "https://unpkg.com/@cloudbase/js-sdk@2.9.1/dist/cloudbase.full.js",
+    "https://imgcache.qq.com/qcloud/tcbjs/1.10.10/tcb.js"
+  ];
+  for(const url of urls){
+    try{
+      await loadScript(url);
+      const sdk=window.cloudbase||window.tcb;
+      if(sdk){
+        cloudbaseApp=sdk.init({env:ENV_ID});
+        try{
+          const auth=cloudbaseApp.auth({persistence:"local"});
+          const state=await auth.getLoginState();
+          if(!state && auth.anonymousAuthProvider){
+            await auth.anonymousAuthProvider().signIn();
+          }
+        }catch(authErr){
+          console.warn("CloudBase 登录提醒：",authErr);
+        }
+        console.log("CloudBase SDK 已加载：",url);
+        return;
+      }
+    }catch(e){
+      console.warn("CloudBase SDK 加载失败：",url,e);
     }
-  }catch(err){
-    console.warn("CloudBase 匿名登录失败：", err);
+  }
+  throw new Error("CloudBase SDK 加载失败，请检查网络或 CDN。");
+}
+cloudbaseReady=initCloudbase();
+
+const pages=document.querySelectorAll('.page');
+const navBtns=document.querySelectorAll('.nav button');
+function showPage(id,btn){pages.forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');navBtns.forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active')}
+
+const emotionCycle=[{emotion:'快乐',emoji:'😊'},{emotion:'生气',emoji:'🔥'},{emotion:'忧伤',emoji:'💧'},{emotion:'焦虑',emoji:'🌿'},{emotion:'平静',emoji:'🌙'}];
+let records={};
+const now=new Date();
+let currentYear=now.getFullYear();
+let currentMonth=now.getMonth()+1;
+
+function recordKey(y,m,d){return `${y}-${m}-${d}`}
+
+function initSelectors(){
+  const yearSelect=document.getElementById('yearSelect');
+  const monthSelect=document.getElementById('monthSelect');
+  yearSelect.innerHTML='';
+  monthSelect.innerHTML='';
+  for(let y=currentYear-3;y<=currentYear+3;y++){
+    yearSelect.innerHTML+=`<option value="${y}">${y}年</option>`;
+  }
+  for(let m=1;m<=12;m++){
+    monthSelect.innerHTML+=`<option value="${m}">${m}月</option>`;
+  }
+  yearSelect.value=currentYear;
+  monthSelect.value=currentMonth;
+}
+
+function renderCalendar(){
+  currentYear=Number(document.getElementById('yearSelect').value);
+  currentMonth=Number(document.getElementById('monthSelect').value);
+  const grid=document.getElementById('calendarGrid');
+  grid.innerHTML='';
+  ['日','一','二','三','四','五','六'].forEach(w=>grid.innerHTML+=`<div class="week">${w}</div>`);
+  const firstDay=new Date(currentYear,currentMonth-1,1).getDay();
+  const totalDays=new Date(currentYear,currentMonth,0).getDate();
+  for(let i=0;i<firstDay;i++)grid.innerHTML+='<div class="day empty"></div>';
+  for(let d=1;d<=totalDays;d++){
+    const r=records[recordKey(currentYear,currentMonth,d)];
+    const div=document.createElement('div');
+    div.className='day';
+    div.onclick=()=>toggleEmotion(d);
+    div.innerHTML=`<b>${d}日</b><div class="dot">${r?r.emoji:'＋'}</div><br><div style="font-size:13px;color:#667085">${r?r.emotion:'点击记录'}</div>`;
+    grid.appendChild(div);
   }
 }
 
-const cloudbaseReady = ensureCloudbaseLogin();
-
-const pages=document.querySelectorAll('.page');const navBtns=document.querySelectorAll('.nav button');
-function showPage(id,btn){pages.forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');navBtns.forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active')}
-const emotionCycle=[{emotion:'快乐',emoji:'😊'},{emotion:'生气',emoji:'🔥'},{emotion:'忧伤',emoji:'💧'},{emotion:'焦虑',emoji:'🌿'},{emotion:'平静',emoji:'🌙'}];
-let records={};const now=new Date();let currentYear=now.getFullYear();let currentMonth=now.getMonth()+1;function recordKey(y,m,d){return 
-${y}-${m}-${d}
+function toggleEmotion(day){
+  const k=recordKey(currentYear,currentMonth,day);
+  let nextIndex=0;
+  if(records[k]){
+    const currentIndex=emotionCycle.findIndex(e=>e.emotion===records[k].emotion);
+    nextIndex=(currentIndex+1)%emotionCycle.length;
+  }
+  records[k]=emotionCycle[nextIndex];
+  document.getElementById('sideEmotion').innerText=records[k].emotion;
+  renderCalendar();
+  updateRestaurantTip();
 }
-function initSelectors(){const yearSelect=document.getElementById('yearSelect');const monthSelect=document.getElementById('monthSelect');for(let y=currentYear-3;y<=currentYear+3;y++)yearSelect.innerHTML+=
-<option value="${y}">${y}年</option>;for(let m=1;m<=12;m++)monthSelect.innerHTML+=<option value="${m}">${m}月</option>
-;yearSelect.value=currentYear;monthSelect.value=currentMonth}
-function renderCalendar(){currentYear=Number(document.getElementById('yearSelect').value);currentMonth=Number(document.getElementById('monthSelect').value);const grid=document.getElementById('calendarGrid');grid.innerHTML='';['日','一','二','三','四','五','六'].forEach(w=>grid.innerHTML+=
-<div class="week">${w}</div>);const firstDay=new Date(currentYear,currentMonth-1,1).getDay();const totalDays=new Date(currentYear,currentMonth,0).getDate();for(let i=0;i<firstDay;i++)grid.innerHTML+='<div class="day empty"></div>';for(let d=1;d<=totalDays;d++){const r=records[recordKey(currentYear,currentMonth,d)];const div=document.createElement('div');div.className='day';div.onclick=()=>toggleEmotion(d);div.innerHTML=<b>${d}日</b><div class="dot">${r?r.emoji:'＋'}</div><br><div style="font-size:13px;color:#667085">${r?r.emotion:'点击记录'}</div>
-;grid.appendChild(div)}}
-function toggleEmotion(day){const k=recordKey(currentYear,currentMonth,day);let nextIndex=0;if(records[k]){const currentIndex=emotionCycle.findIndex(e=>e.emotion===records[k].emotion);nextIndex=(currentIndex+1)%emotionCycle.length}records[k]=emotionCycle[nextIndex];document.getElementById('sideEmotion').innerText=records[k].emotion;renderCalendar();updateRestaurantTip()}
-function generateReport(){let counts={快乐:0,生气:0,忧伤:0,焦虑:0,平静:0};Object.values(records).forEach(r=>{if(counts[r.emotion]!==undefined)counts[r.emotion]++});let total=Object.values(counts).reduce((a,b)=>a+b,0);if(total===0){alert('请先记录情绪');return}const bars=document.getElementById('bars');bars.innerHTML='';emotionCycle.forEach(e=>{const pct=Math.round(counts[e.emotion]/total*100);bars.innerHTML+=
-<div class="bar"><div class="bar-head"><span>${e.emoji} ${e.emotion}</span><span>${pct}%</span></div><div class="track"><span style="width:${pct}%"></span></div></div>});let topEmotion=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];const route=routeMap(topEmotion);document.getElementById('weeklyRoute').innerText=AI检测到你本阶段主要情绪为「${topEmotion}」，建议体验「${route.name}」。;document.getElementById('sideReco').innerText=route.name;document.getElementById('aiAdvice').innerText=AI检测到你本阶段主要情绪为「${topEmotion}」，${route.summary};document.getElementById('routeBoard').innerHTML=route.steps.map(s=><div class="route-card"><div class="route-icon">${s.icon}</div><div><h3>${s.title}</h3><p>${s.text}</p></div></div>
-).join('')}
-function routeMap(emotion){const map={快乐:{name:'快乐激活路线',summary:'可以优先进入顶层快乐云端，让积极情绪被放大。',steps:[{icon:'🌉',title:'四川路桥入口',text:'佩戴手环，开启今日情绪路线。'},{icon:'😊',title:'顶层快乐云端',text:'参与快乐能量巩固与情绪信箱。'},{icon:'🌿',title:'社区共享区',text:'在开放花园中延续轻盈状态。'}]},生气:{name:'能量释放路线',summary:'可以先释放压力，再进入舒缓区稳定状态。',steps:[{icon:'🔥',title:'3F 神经减压层',text:'通过体感互动和节奏训练释放压力。'},{icon:'💧',title:'2F 呼吸修复层',text:'用呼吸引导降低情绪强度。'},{icon:'💌',title:'发光情绪邮筒',text:'把难以表达的话投递出去。'}]},忧伤:{name:'温柔陪伴路线',summary:'适合慢下来，先被陪伴，再逐渐恢复能量。',steps:[{icon:'🎧',title:'白噪音长椅',text:'让城市声音慢下来。'},{icon:'💧',title:'2F 情绪舒缓层',text:'进入低刺激空间休息。'},{icon:'🤖',title:'澄澄陪伴站',text:'与AI进行短时情绪对话。'}]},焦虑:{name:'平静修复路线',summary:'建议通过呼吸、植物和低刺激空间重新建立稳定感。',steps:[{icon:'🌿',title:'2F 呼吸修复层',text:'进行引导式呼吸疗愈。'},{icon:'🫁',title:'AI呼吸治疗舱',text:'平衡呼吸节奏。'},{icon:'📊',title:'情绪报告',text:'生成今日压力状态与建议。'}]},平静:{name:'深度修复路线',summary:'可以进行更深层的睡眠管理、心理咨询和自我整理。',steps:[{icon:'🌙',title:'5F 社区共愈层',text:'进行睡眠管理与轻咨询。'},{icon:'🏙️',title:'情绪云端',text:'观看城市情绪光点。'},{icon:'☕',title:'社区客厅',text:'完成一次安静整理。'}]}};return map[emotion]}
+
+function generateReport(){
+  let counts={快乐:0,生气:0,忧伤:0,焦虑:0,平静:0};
+  Object.values(records).forEach(r=>{if(counts[r.emotion]!==undefined)counts[r.emotion]++});
+  let total=Object.values(counts).reduce((a,b)=>a+b,0);
+  if(total===0){alert('请先记录情绪');return}
+  const bars=document.getElementById('bars');
+  bars.innerHTML='';
+  emotionCycle.forEach(e=>{
+    const pct=Math.round(counts[e.emotion]/total*100);
+    bars.innerHTML+=`<div class="bar"><div class="bar-head"><span>${e.emoji} ${e.emotion}</span><span>${pct}%</span></div><div class="track"><span style="width:${pct}%"></span></div></div>`;
+  });
+  let topEmotion=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];
+  const route=routeMap(topEmotion);
+  document.getElementById('weeklyRoute').innerText=`AI检测到你本阶段主要情绪为「${topEmotion}」，建议体验「${route.name}」。`;
+  document.getElementById('sideReco').innerText=route.name;
+  document.getElementById('aiAdvice').innerText=`AI检测到你本阶段主要情绪为「${topEmotion}」，${route.summary}`;
+  document.getElementById('routeBoard').innerHTML=route.steps.map(s=>`<div class="route-card"><div class="route-icon">${s.icon}</div><div><h3>${s.title}</h3><p>${s.text}</p></div></div>`).join('');
+}
+
+function routeMap(emotion){
+  const map={
+    快乐:{name:'快乐激活路线',summary:'可以优先进入顶层快乐云端，让积极情绪被放大。',steps:[{icon:'🌉',title:'四川路桥入口',text:'佩戴手环，开启今日情绪路线。'},{icon:'😊',title:'顶层快乐云端',text:'参与快乐能量巩固与情绪信箱。'},{icon:'🌿',title:'社区共享区',text:'在开放花园中延续轻盈状态。'}]},
+    生气:{name:'能量释放路线',summary:'可以先释放压力，再进入舒缓区稳定状态。',steps:[{icon:'🔥',title:'3F 神经减压层',text:'通过体感互动和节奏训练释放压力。'},{icon:'💧',title:'2F 呼吸修复层',text:'用呼吸引导降低情绪强度。'},{icon:'💌',title:'发光情绪邮筒',text:'把难以表达的话投递出去。'}]},
+    忧伤:{name:'温柔陪伴路线',summary:'适合慢下来，先被陪伴，再逐渐恢复能量。',steps:[{icon:'🎧',title:'白噪音长椅',text:'让城市声音慢下来。'},{icon:'💧',title:'2F 情绪舒缓层',text:'进入低刺激空间休息。'},{icon:'🤖',title:'澄澄陪伴站',text:'与AI进行短时情绪对话。'}]},
+    焦虑:{name:'平静修复路线',summary:'建议通过呼吸、植物和低刺激空间重新建立稳定感。',steps:[{icon:'🌿',title:'2F 呼吸修复层',text:'进行引导式呼吸疗愈。'},{icon:'🫁',title:'AI呼吸治疗舱',text:'平衡呼吸节奏。'},{icon:'📊',title:'情绪报告',text:'生成今日压力状态与建议。'}]},
+    平静:{name:'深度修复路线',summary:'可以进行更深层的睡眠管理、心理咨询和自我整理。',steps:[{icon:'🌙',title:'5F 社区共愈层',text:'进行睡眠管理与轻咨询。'},{icon:'🏙️',title:'情绪云端',text:'观看城市情绪光点。'},{icon:'☕',title:'社区客厅',text:'完成一次安静整理。'}]}
+  };
+  return map[emotion];
+}
 
 const visitFloors={
  '01f':{title:'01F 情绪接诊中心',sub:'情绪，被看见的第一步',img:'images/01f.png',hero:'images/01f-1.png',detail:'images/01f-2.png',desc:'这里是进入南川大楼的起点。通过情绪进入门、识别大厅、光谱长廊与AI接诊台，完成从城市状态到疗愈状态的转换。',tags:['情绪分诊','手环读取','AI接诊','情绪档案'],steps:[['01','情绪进入门','光影与粒子感知你的初始状态。'],['02','情绪识别大厅','生成城市情绪天气，看见自己的存在。'],['03','情绪光谱长廊','通过色彩与光线找到情绪坐标。'],['04','AI情绪接诊台','生成今日情绪报告与初步路线。'],['05','档案生成区','记录本次情绪变化，进入长期管理。']]},
@@ -349,18 +234,53 @@ const visitFloors={
  'top':{title:'顶层 · 快乐云端',sub:'在快乐中巩固疗愈成果，让美好成为日常',img:'images/top-happy.png',hero:'images/top-happy-1.png',detail:'images/top-happy-2.png',desc:'这里是疗愈旅程的最终抵达点。通过快乐能量指数、情绪信箱、日落剧场和共享花园，把短暂治愈转化为持续生活习惯。',tags:['快乐巩固','情绪信箱','日落花园','社区分享'],steps:[['01','快乐能量指数','可视化本周积极状态。'],['02','情绪信箱','写下此刻快乐，让愿望发光。'],['03','快乐沉浸体验','日落剧场、音乐治愈与泡泡互动。'],['04','未来生命建议','AI情绪医生给出生活建议。'],['05','大白陪伴','获得温暖回应，完成旅程。']]}
 };
 let currentVisitFloor='01f';
-function initVisit(){const box=document.getElementById('floorGallery');Object.entries(visitFloors).forEach(([id,f],i)=>{box.innerHTML+=
-<button class="floor-tile ${i===0?'active':''}" onclick="showVisitFloor('${id}',this)"><img src="${f.img}" alt="${f.title}"><div class="floor-tile-info"><h3>${f.title}</h3><p>${f.sub}</p></div></button>
-});showVisitFloor('01f')}
-function showVisitFloor(id,btn){currentVisitFloor=id;const f=visitFloors[id];document.getElementById('visitHeroImg').src=f.hero;document.getElementById('visitHeroTitle').innerText=f.title;document.getElementById('visitHeroText').innerText=f.sub;document.getElementById('visitMainImg').src=f.detail || f.img;document.getElementById('visitTitle').innerText=f.title;document.getElementById('visitDesc').innerText=f.desc;document.getElementById('visitTags').innerHTML=f.tags.map(t=>
-<span>${t}</span>).join('');document.getElementById('visitSteps').innerHTML=f.steps.map(s=><div class="step"><b>${s[0]}</b><div><h4>${s[1]}</h4><div>${s[2]}</div></div></div>
-).join('');document.querySelectorAll('.floor-tile').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active')}
-function recommendVisit(emotion,btn){document.querySelectorAll('#visitEmotionButtons button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');const map={快乐:{floor:'top',title:'快乐激活路线',time:'约45分钟',text:'四川路桥入口 → 1F情绪接诊 → 顶层快乐云端 → 社区共享区。适合放大积极情绪，把短暂快乐转化为日常能量。'},生气:{floor:'03f',title:'能量释放路线',time:'约50分钟',text:'四川路桥入口 → 1F情绪接诊 → 3F神经减压层 → 2F呼吸修复层。先释放，再稳定。'},忧伤:{floor:'02f',title:'温柔陪伴路线',time:'约40分钟',text:'白噪音长椅 → 1F情绪接诊 → 2F呼吸修复层 → 澄澄陪伴站。适合慢下来，被温柔接住。'},焦虑:{floor:'02f',title:'平静修复路线',time:'约45分钟',text:'情绪入口 → 2F呼吸修复层 → 气味疗愈花园 → 情绪报告生成。通过呼吸和低刺激空间恢复稳定。'},平静:{floor:'5f',title:'深度修复路线',time:'约60分钟',text:'1F情绪接诊 → 5F社区共愈层 → 顶层情绪云端。适合做更深层的睡眠管理与自我整理。'}};const r=map[emotion];document.getElementById('visitTicket').classList.add('active');document.getElementById('ticketTitle').innerText=
-${emotion} · ${r.title};document.getElementById('ticketText').innerText=推荐时长：${r.time}｜${r.text}
-;showVisitFloor(r.floor)}
-function askCurrentFloor(){const f=visitFloors[currentVisitFloor];showPage('ai',document.querySelectorAll('.nav button')[3]);askChengcheng(
-我现在想参观${f.title}，请根据我的情绪日历判断我适不适合，并给我一句温柔建议。
-)}
+
+function initVisit(){
+  const box=document.getElementById('floorGallery');
+  box.innerHTML='';
+  Object.entries(visitFloors).forEach(([id,f],i)=>{
+    box.innerHTML+=`<button class="floor-tile ${i===0?'active':''}" onclick="showVisitFloor('${id}',this)"><img src="${f.img}" alt="${f.title}"><div class="floor-tile-info"><h3>${f.title}</h3><p>${f.sub}</p></div></button>`;
+  });
+  showVisitFloor('01f');
+}
+
+function showVisitFloor(id,btn){
+  currentVisitFloor=id;
+  const f=visitFloors[id];
+  document.getElementById('visitHeroImg').src=f.hero;
+  document.getElementById('visitHeroTitle').innerText=f.title;
+  document.getElementById('visitHeroText').innerText=f.sub;
+  document.getElementById('visitMainImg').src=f.detail || f.img;
+  document.getElementById('visitTitle').innerText=f.title;
+  document.getElementById('visitDesc').innerText=f.desc;
+  document.getElementById('visitTags').innerHTML=f.tags.map(t=>`<span>${t}</span>`).join('');
+  document.getElementById('visitSteps').innerHTML=f.steps.map(s=>`<div class="step"><b>${s[0]}</b><div><h4>${s[1]}</h4><div>${s[2]}</div></div></div>`).join('');
+  document.querySelectorAll('.floor-tile').forEach(x=>x.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+}
+
+function recommendVisit(emotion,btn){
+  document.querySelectorAll('#visitEmotionButtons button').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  const map={
+    快乐:{floor:'top',title:'快乐激活路线',time:'约45分钟',text:'四川路桥入口 → 1F情绪接诊 → 顶层快乐云端 → 社区共享区。适合放大积极情绪，把短暂快乐转化为日常能量。'},
+    生气:{floor:'03f',title:'能量释放路线',time:'约50分钟',text:'四川路桥入口 → 1F情绪接诊 → 3F神经减压层 → 2F呼吸修复层。先释放，再稳定。'},
+    忧伤:{floor:'02f',title:'温柔陪伴路线',time:'约40分钟',text:'白噪音长椅 → 1F情绪接诊 → 2F呼吸修复层 → 澄澄陪伴站。适合慢下来，被温柔接住。'},
+    焦虑:{floor:'02f',title:'平静修复路线',time:'约45分钟',text:'情绪入口 → 2F呼吸修复层 → 气味疗愈花园 → 情绪报告生成。通过呼吸和低刺激空间恢复稳定。'},
+    平静:{floor:'5f',title:'深度修复路线',time:'约60分钟',text:'1F情绪接诊 → 5F社区共愈层 → 顶层情绪云端。适合做更深层的睡眠管理与自我整理。'}
+  };
+  const r=map[emotion];
+  document.getElementById('visitTicket').classList.add('active');
+  document.getElementById('ticketTitle').innerText=`${emotion} · ${r.title}`;
+  document.getElementById('ticketText').innerText=`推荐时长：${r.time}｜${r.text}`;
+  showVisitFloor(r.floor);
+}
+
+function askCurrentFloor(){
+  const f=visitFloors[currentVisitFloor];
+  showPage('ai',document.querySelectorAll('.nav button')[3]);
+  askChengcheng(`我现在想参观${f.title}，请根据我的情绪日历判断我适不适合，并给我一句温柔建议。`);
+}
 function askChengcheng(text){const input=document.getElementById('chatInput');input.value=text;input.focus()}
 
 const menuItems=[
@@ -376,75 +296,72 @@ const menuItems=[
   {name:'能量恢复可可',type:'饮品',price:38,img:'images/drink4.jpg',desc:'温热可可与柔和甜感，适合疲惫后的能量补给。',tags:['恢复','温暖']}
 ];
 let cart=[];
+
 function initRestaurant(){renderMenu('全部');updateRestaurantTip()}
-function renderMenu(type){const grid=document.getElementById('foodGrid');if(!grid)return;grid.innerHTML='';menuItems.filter(item=>type==='全部'||item.type===type).forEach(item=>{grid.innerHTML+=
-  <div class="food-card">
-    <img class="food-image" src="${item.img}" alt="${item.name}" onerror="this.outerHTML='<div class=&quot;food-image placeholder&quot;>🍽️</div>'">
-    <div class="food-info">
-      <h3>${item.name}</h3>
-      <p>${item.desc}</p>
-      <div class="food-tags">${item.tags.map(t=>
-<span>${t}</span>
-).join('')}</div>
-      <div class="food-bottom">
-        <span class="price">¥${item.price}</span>
-        <button class="small-btn" onclick="addCart('${item.name}',${item.price})">点餐</button>
-      </div>
-    </div>
-  </div>
-})}
+
+function renderMenu(type){
+  const grid=document.getElementById('foodGrid');
+  if(!grid)return;
+  grid.innerHTML='';
+  menuItems.filter(item=>type==='全部'||item.type===type).forEach(item=>{
+    grid.innerHTML+=`<div class="food-card"><img class="food-image" src="${item.img}" alt="${item.name}" onerror="this.outerHTML='<div class=&quot;food-image placeholder&quot;>🍽️</div>'"><div class="food-info"><h3>${item.name}</h3><p>${item.desc}</p><div class="food-tags">${item.tags.map(t=>`<span>${t}</span>`).join('')}</div><div class="food-bottom"><span class="price">¥${item.price}</span><button class="small-btn" onclick="addCart('${item.name}',${item.price})">点餐</button></div></div></div>`;
+  });
+}
 function filterMenu(type,btn){document.querySelectorAll('#restaurantTabs button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');renderMenu(type)}
 function addCart(name,price){cart.push({name,price});renderCart()}
-function renderCart(){const list=document.getElementById('cartList');const total=document.getElementById('cartTotal');if(!list||!total)return;let sum=0;if(cart.length===0){list.innerHTML='<div style="color:#667085;line-height:1.7">还没有点餐。可以先选择一个情绪套餐，或从菜单中添加菜品。</div>';total.innerText='0';return}list.innerHTML='';cart.forEach((item,index)=>{sum+=item.price;list.innerHTML+=
-<div class="cart-item"><span>${item.name}</span><span>¥${item.price} <button onclick="removeCart(${index})" style="border:none;background:none;cursor:pointer;color:#ff8098">×</button></span></div>
-});total.innerText=sum}
+function renderCart(){
+  const list=document.getElementById('cartList');
+  const total=document.getElementById('cartTotal');
+  if(!list||!total)return;
+  let sum=0;
+  if(cart.length===0){list.innerHTML='<div style="color:#667085;line-height:1.7">还没有点餐。可以先选择一个情绪套餐，或从菜单中添加菜品。</div>';total.innerText='0';return}
+  list.innerHTML='';
+  cart.forEach((item,index)=>{
+    sum+=item.price;
+    list.innerHTML+=`<div class="cart-item"><span>${item.name}</span><span>¥${item.price} <button onclick="removeCart(${index})" style="border:none;background:none;cursor:pointer;color:#ff8098">×</button></span></div>`;
+  });
+  total.innerText=sum;
+}
 function removeCart(index){cart.splice(index,1);renderCart()}
-function checkoutOrder(){const note=document.getElementById('futureNote')?.value||'';if(cart.length===0){alert('请先选择菜品');return}alert(
-下单成功！\n取餐地点：5F 大白情绪餐厅\n预计取餐：15分钟后\n${note?'未来便签：'+note:''}
-)}
-function updateRestaurantTip(){const tip=document.getElementById('restaurantTip');if(!tip)return;const values=Object.values(records);if(values.length===0){tip.innerText='澄澄AI建议：今天可以选择温暖、低刺激、带来安全感的饮食。';return}const counts={快乐:0,生气:0,忧伤:0,焦虑:0,平静:0};values.forEach(r=>{if(counts[r.emotion]!==undefined)counts[r.emotion]++});const top=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];const map={快乐:'澄澄AI建议：你最近状态积极，适合选择快乐分享套餐、云朵舒芙蕾和情绪气泡水。',生气:'澄澄AI建议：近期能量偏高，适合温热主食与低刺激饮品，帮助情绪慢慢降温。',忧伤:'澄澄AI建议：可以选择安心抱抱饭、热牛奶和陪伴型甜品，让身体先被照顾。',焦虑:'澄澄AI建议：适合白噪音拿铁、深夜陪伴乌冬面和低糖甜品，减少刺激，稳定节奏。',平静:'澄澄AI建议：适合轻食与温和饮品，延续稳定状态，也可以给未来的自己写一张便签。'};tip.innerText=map[top]}
+function checkoutOrder(){
+  const note=document.getElementById('futureNote')?.value||'';
+  if(cart.length===0){alert('请先选择菜品');return}
+  alert(`下单成功！\n取餐地点：5F 大白情绪餐厅\n预计取餐：15分钟后\n${note?'未来便签：'+note:''}`);
+}
+function updateRestaurantTip(){
+  const tip=document.getElementById('restaurantTip');
+  if(!tip)return;
+  const values=Object.values(records);
+  if(values.length===0){tip.innerText='澄澄AI建议：今天可以选择温暖、低刺激、带来安全感的饮食。';return}
+  const counts={快乐:0,生气:0,忧伤:0,焦虑:0,平静:0};
+  values.forEach(r=>{if(counts[r.emotion]!==undefined)counts[r.emotion]++});
+  const top=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];
+  const map={快乐:'澄澄AI建议：你最近状态积极，适合选择快乐分享套餐、云朵舒芙蕾和情绪气泡水。',生气:'澄澄AI建议：近期能量偏高，适合温热主食与低刺激饮品，帮助情绪慢慢降温。',忧伤:'澄澄AI建议：可以选择安心抱抱饭、热牛奶和陪伴型甜品，让身体先被照顾。',焦虑:'澄澄AI建议：适合白噪音拿铁、深夜陪伴乌冬面和低糖甜品，减少刺激，稳定节奏。',平静:'澄澄AI建议：适合轻食与温和饮品，延续稳定状态，也可以给未来的自己写一张便签。'};
+  tip.innerText=map[top];
+}
 
 async function sendChat(){
   const input=document.getElementById('chatInput');
   const box=document.getElementById('chatBox');
-
-  if(!input.value.trim()) return;
-
+  if(!input.value.trim())return;
   const userMessage=input.value;
   input.value='';
-
-  box.innerHTML+=
-<div class="msg"><b>你：</b>${userMessage}</div><div class="msg" id="loading"><b>澄澄：</b>正在思考...</div>
-;
+  box.innerHTML+=`<div class="msg"><b>你：</b>${userMessage}</div><div class="msg" id="loading"><b>澄澄：</b>正在思考...</div>`;
   box.scrollTop=box.scrollHeight;
-
   try{
     await cloudbaseReady;
-
-    const result = await cloudbaseApp.callFunction({
-      name: 'chat',
-      data: {
-        message: userMessage,
-        records: records
-      }
-    });
-
-    const data = result.result || {};
+    if(!cloudbaseApp)throw new Error('CloudBase SDK 未初始化');
+    const result=await cloudbaseApp.callFunction({name:'chat',data:{message:userMessage,records:records}});
+    const data=result.result||{};
     const loading=document.getElementById('loading');
-    if(loading) loading.remove();
-
-    box.innerHTML+=
-<div class="msg"><b>澄澄：</b>${data.reply||data.error||'我会一直陪着你。'}</div>
-;
+    if(loading)loading.remove();
+    box.innerHTML+=`<div class="msg"><b>澄澄：</b>${data.reply||data.error||'我会一直陪着你。'}</div>`;
   }catch(err){
     const loading=document.getElementById('loading');
-    if(loading) loading.remove();
+    if(loading)loading.remove();
     console.error('CloudBase chat error:',err);
-    box.innerHTML+=
-<div class="msg"><b>澄澄：</b>连接失败了，请检查 CloudBase 云函数 chat 是否已部署、环境变量是否配置。</div>
-;
+    box.innerHTML+=`<div class="msg"><b>澄澄：</b>连接失败：${err.message||JSON.stringify(err)}</div>`;
   }
-
   box.scrollTop=box.scrollHeight;
 }
 
@@ -452,59 +369,37 @@ function registerUser(){
   const name=document.getElementById("loginName").value.trim();
   const email=document.getElementById("loginEmail").value.trim();
   const password=document.getElementById("loginPassword").value.trim();
-
-  if(!name || !email || !password){
-    alert("请填写昵称、邮箱/手机号和密码");
-    return;
-  }
-
+  if(!name || !email || !password){alert("请填写昵称、邮箱/手机号和密码");return}
   const user={name,email,password};
   localStorage.setItem("nanchuan_user",JSON.stringify(user));
   localStorage.setItem("nanchuan_login","true");
   enterApp(user);
 }
-
 function loginUser(){
   const email=document.getElementById("loginEmail").value.trim();
   const password=document.getElementById("loginPassword").value.trim();
   const saved=JSON.parse(localStorage.getItem("nanchuan_user") || "null");
-
-  if(!saved){
-    alert("还没有账号，请先创建情绪档案");
-    return;
-  }
-
-  if(saved.email===email && saved.password===password){
-    localStorage.setItem("nanchuan_login","true");
-    enterApp(saved);
-  }else{
-    alert("账号或密码不正确");
-  }
+  if(!saved){alert("还没有账号，请先创建情绪档案");return}
+  if(saved.email===email && saved.password===password){localStorage.setItem("nanchuan_login","true");enterApp(saved)}else{alert("账号或密码不正确")}
 }
-
 function enterApp(user){
   const mask=document.getElementById("loginMask");
   if(mask) mask.style.display="none";
   const nameBox=document.getElementById("userName");
   if(nameBox) nameBox.innerText=user.name;
 }
-
-function logoutUser(){
-  localStorage.setItem("nanchuan_login","false");
-  const mask=document.getElementById("loginMask");
-  if(mask) mask.style.display="flex";
-}
-
+function logoutUser(){localStorage.setItem("nanchuan_login","false");const mask=document.getElementById("loginMask");if(mask) mask.style.display="flex"}
 function checkLogin(){
   const isLogin=localStorage.getItem("nanchuan_login");
   const user=JSON.parse(localStorage.getItem("nanchuan_user") || "null");
-
-  if(isLogin==="true" && user){
-    enterApp(user);
-  }
+  if(isLogin==="true" && user){enterApp(user)}
 }
 
-initSelectors();renderCalendar();initVisit();initRestaurant();checkLogin();
+initSelectors();
+renderCalendar();
+initVisit();
+initRestaurant();
+checkLogin();
 </script>
 </body>
 </html>

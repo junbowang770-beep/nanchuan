@@ -1,0 +1,13 @@
+{
+  "envId": "dengngi-nanchuan-d1eb1fk47375dfb",
+  "functionRoot": "functions",
+  "functions": [
+    {
+      "name": "chat",
+      "timeout": 20,
+      "envVariables": {
+        "DEEPSEEK_API_KEY": "请在腾讯云控制台填写，不要写在这里"
+      }
+    }
+  ]
+}

@@ -243,7 +243,7 @@ body{font-family:"Microsoft YaHei",sans-serif;background:linear-gradient(135deg,
           <div class="mood-tip" id="restaurantTip">澄澄AI建议：今天可以选择温暖、低刺激、带来安全感的饮食。</div>
         </div>
         <div class="restaurant-visual">
-          <img src="images/restaurant-hero.png" alt="大白情绪餐厅主视觉" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <img src="images/5f-1.png" alt="大白情绪餐厅主视觉" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
           <div class="placeholder" style="display:none">🍽️</div>
         </div>
       </div>
@@ -299,9 +299,9 @@ body{font-family:"Microsoft YaHei",sans-serif;background:linear-gradient(135deg,
   </main>
 </div>
 
-<script src="https://imgcache.qq.com/qcloud/tcbjs/1.10.10/tcb.js"></script>
+<script src="https://imgcache.qq.com/qcloud/cloudbase-js-sdk/2.9.1/cloudbase.full.js"></script>
 <script>
-const cloudbaseApp = tcb.init({
+const cloudbaseApp = cloudbase.init({
   env: "dengngi-nanchuan-d1eb1fk47375dfb"
 });
 
@@ -413,7 +413,7 @@ async function sendChat(){
     const loading=document.getElementById('loading');
     if(loading) loading.remove();
     console.error('CloudBase chat error:',err);
-    box.innerHTML+=`<div class="msg"><b>澄澄：</b>连接失败了，请检查 CloudBase 云函数 chat 是否已部署、环境变量是否配置。</div>`;
+    box.innerHTML+=`<div class="msg"><b>澄澄：</b>连接失败：${err.message || JSON.stringify(err)}</div>`;
   }
 
   box.scrollTop=box.scrollHeight;

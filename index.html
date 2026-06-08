@@ -20,7 +20,7 @@ body{font-family:"Microsoft YaHei",sans-serif;background:linear-gradient(135deg,
 .visit-controls{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px}.emotion-filter,.route-pass{background:white;border-radius:26px;padding:18px;box-shadow:0 10px 30px rgba(80,100,130,.08)}.emotion-filter h3,.route-pass h3{margin-bottom:12px}.emotion-buttons{display:flex;gap:10px;flex-wrap:wrap}.emotion-buttons button{border:none;border-radius:999px;background:#fff6ea;padding:10px 14px;font-weight:800;cursor:pointer;color:#5b4b38;transition:.25s}.emotion-buttons button:hover,.emotion-buttons button.active{background:linear-gradient(135deg,#ffb65f,#ff8399);color:white;transform:translateY(-2px)}.route-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:#667085;font-size:14px;line-height:1.8}.route-line span{background:#f8fafc;border-radius:999px;padding:7px 10px}.route-ticket{display:none;margin-bottom:22px;border-radius:26px;padding:20px;background:linear-gradient(135deg,#fff7e8,#ffffff);box-shadow:0 12px 32px rgba(80,100,130,.1);border:1px solid rgba(255,190,120,.35)}.route-ticket.active{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}.route-ticket h3{margin-bottom:8px}.route-ticket p{color:#667085;line-height:1.7}.ask-ai{margin-top:18px;background:#f8fafc;border-radius:22px;padding:16px;display:flex;align-items:center;justify-content:space-between;gap:12px}.ask-ai span{font-size:14px;color:#667085;line-height:1.6}.ask-ai button{white-space:nowrap}
 .visit-hero img{width:100%;height:320px;object-fit:cover;display:block}.visit-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,35,60,.58),rgba(20,35,60,.12),rgba(255,255,255,.05))}.visit-hero-text{position:absolute;left:32px;top:32px;z-index:2;color:white;max-width:520px}.visit-hero-text h2{font-size:34px;margin-bottom:12px}.visit-hero-text p{line-height:1.8;font-size:16px}.visit-hero-text .btn{margin-top:22px;background:rgba(255,255,255,.92);color:#1f2a44;box-shadow:none}
 .floor-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:22px}.floor-tile{border:none;border-radius:24px;background:white;padding:0;overflow:hidden;cursor:pointer;text-align:left;box-shadow:0 12px 32px rgba(80,100,130,.1);transition:.25s}.floor-tile:hover,.floor-tile.active{transform:translateY(-5px);outline:3px solid rgba(255,150,120,.35)}.floor-tile img{width:100%;height:145px;object-fit:cover;display:block}.floor-tile-info{padding:16px}.floor-tile-info h3{font-size:18px;margin-bottom:6px}.floor-tile-info p{font-size:13px;color:#667085;line-height:1.55}.visit-detail{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}.
-  visit-preview{
+.visit-preview{
   background:white;
   border-radius:30px;
   overflow:hidden;
@@ -48,11 +48,110 @@ body{font-family:"Microsoft YaHei",sans-serif;background:linear-gradient(135deg,
 .cart-panel{position:sticky;top:0;background:white;border-radius:30px;padding:22px;box-shadow:0 12px 32px rgba(80,100,130,.1)}.cart-panel h2{margin-bottom:14px}.cart-list{display:grid;gap:10px;min-height:120px}.cart-item{display:flex;justify-content:space-between;gap:12px;padding:12px;border-radius:16px;background:#f8fafc;color:#4b556b;font-size:14px}.cart-total{margin-top:16px;border-top:1px solid #eef2f7;padding-top:16px;font-size:20px;font-weight:900;display:flex;justify-content:space-between}.checkout-btn{width:100%;margin-top:16px;border:none;border-radius:18px;padding:15px;background:linear-gradient(135deg,#ffb65f,#ff8399);color:white;font-size:17px;font-weight:900;cursor:pointer}.note-box{margin-top:16px;border-radius:20px;background:#fff7e8;padding:16px}.note-box textarea{width:100%;min-height:82px;border:none;background:white;border-radius:16px;padding:12px;resize:none;font-family:inherit}.note-box p{font-size:13px;color:#667085;line-height:1.6;margin-bottom:10px}
 
 .ai-layout{display:grid;grid-template-columns:380px 1fr;gap:20px}.ai-character{position:relative;overflow:hidden;min-height:520px;background:linear-gradient(180deg,#fffaf0,#ffffff)}.chengcheng{width:210px;height:240px;margin:24px auto;border-radius:48% 48% 42% 42%;background:linear-gradient(145deg,#fff,#f3efe7);box-shadow:0 24px 60px rgba(130,110,80,.18), inset 0 0 24px rgba(255,255,255,.9);position:relative;display:grid;place-items:center}.chengcheng:before,.chengcheng:after{content:"";position:absolute;top:94px;width:22px;height:22px;border-radius:50%;background:#2c3446}.chengcheng:before{left:62px}.chengcheng:after{right:62px}.smile{position:absolute;top:128px;width:42px;height:22px;border-bottom:4px solid #2c3446;border-radius:0 0 99px 99px}.antenna{position:absolute;top:-48px;left:50%;width:8px;height:52px;background:#f0e7d7;border-radius:99px;transform:translateX(-50%)}.antenna:before{content:"";position:absolute;top:-16px;left:50%;transform:translateX(-50%);width:26px;height:26px;border-radius:50%;background:white;box-shadow:0 0 18px rgba(255,210,130,.8)}.heart{position:absolute;bottom:58px;width:54px;height:54px;border-radius:18px;background:#fff4df;display:grid;place-items:center;color:#ff8ba0;font-size:26px;box-shadow:0 0 24px rgba(255,190,150,.35)}.arm{position:absolute;width:60px;height:112px;background:linear-gradient(145deg,#fff,#eee8dd);border-radius:40px;top:104px}.arm.left{left:-34px;transform:rotate(18deg)}.arm.right{right:-34px;transform:rotate(-18deg)}.character-tags{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}.character-tags span{background:rgba(255,255,255,.76);border-radius:18px;padding:12px;text-align:center;color:#667085;font-size:13px}.chat{background:white;border-radius:30px;padding:24px;display:flex;flex-direction:column;height:520px}.chat-box{flex:1;overflow:auto;margin-bottom:20px}.msg{margin-bottom:16px;line-height:1.7}.input-row{display:flex;gap:12px}.input-row input{flex:1;border:none;border-radius:999px;padding:16px;background:#f5f7fb}.btn{border:none;border-radius:999px;padding:14px 24px;background:linear-gradient(135deg,#ffb65f,#ff8399);color:white;font-weight:800;cursor:pointer}
+
+/* 登录注册弹窗 */
+.login-mask{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:linear-gradient(135deg,#fff1d7,#ebf8ff,#f6edff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+
+.login-card{
+  width:430px;
+  max-width:100%;
+  background:rgba(255,255,255,.78);
+  backdrop-filter:blur(22px);
+  border-radius:34px;
+  padding:38px;
+  box-shadow:0 24px 70px rgba(60,80,120,.18);
+  text-align:center;
+}
+
+.login-card h1{
+  font-size:34px;
+  margin-bottom:10px;
+}
+
+.login-card p{
+  color:#667085;
+  margin-bottom:24px;
+  line-height:1.7;
+}
+
+.login-card input{
+  width:100%;
+  border:none;
+  border-radius:18px;
+  padding:15px 18px;
+  margin-bottom:14px;
+  background:white;
+  font-size:15px;
+  outline:none;
+}
+
+.login-card button{
+  width:100%;
+  border:none;
+  border-radius:999px;
+  padding:14px;
+  margin-top:10px;
+  background:linear-gradient(135deg,#ffb65f,#ff8399);
+  color:white;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.login-card .ghost-login{
+  background:white!important;
+  color:#4b556b!important;
+}
+
+.login-tip{
+  margin-top:16px;
+  color:#98a2b3;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.logout-btn{
+  width:100%;
+  border:none;
+  border-radius:999px;
+  padding:10px 14px;
+  background:linear-gradient(135deg,#ffb65f,#ff8399);
+  color:white;
+  font-weight:800;
+  cursor:pointer;
+  margin-top:12px;
+}
+
 @media(max-width:1000px){body{overflow:auto}.app{grid-template-columns:1fr;height:auto}.grid.two,.ai-layout,.visit-detail,.visit-controls,.restaurant-layout,.restaurant-hero{grid-template-columns:1fr}.calendar{grid-template-columns:repeat(2,1fr)}.floor-gallery,.package-grid,.food-grid{grid-template-columns:1fr}.visit-hero img,.visit-preview img{height:260px}.route-ticket.active{grid-template-columns:1fr}}
 </style>
 </head>
 
 <body>
+
+<div class="login-mask" id="loginMask">
+  <div class="login-card">
+    <h1>南川大楼</h1>
+    <p>请先建立你的情绪档案，开启专属的情绪疗愈旅程。</p>
+
+    <input id="loginName" placeholder="昵称">
+    <input id="loginEmail" placeholder="邮箱 / 手机号">
+    <input id="loginPassword" type="password" placeholder="密码">
+
+    <button onclick="registerUser()">创建情绪档案</button>
+    <button class="ghost-login" onclick="loginUser()">继续我的疗愈旅程</button>
+
+    <div class="login-tip">演示版登录：账号信息仅保存在当前浏览器中，不会上传服务器。</div>
+  </div>
+</div>
+
 <div class="app">
   <aside class="sidebar">
     <div class="logo">南川大楼<br>你的情绪栖息地</div>
@@ -64,7 +163,12 @@ body{font-family:"Microsoft YaHei",sans-serif;background:linear-gradient(135deg,
       <button onclick="showPage('ai',this)">🤖 澄澄AI</button>
       <button onclick="showPage('restaurant',this)">🍴 情绪餐厅</button>
     </div>
-    <div class="user">今日状态：<b id="sideEmotion">未记录</b><br>AI建议：<span id="sideReco">先完成情绪记录</span></div>
+    <div class="user">
+      欢迎你：<b id="userName">未登录</b><br>
+      今日状态：<b id="sideEmotion">未记录</b><br>
+      AI建议：<span id="sideReco">先完成情绪记录</span>
+      <button class="logout-btn" onclick="logoutUser()">退出登录</button>
+    </div>
   </aside>
 
   <main class="main">
@@ -256,7 +360,64 @@ function checkoutOrder(){const note=document.getElementById('futureNote')?.value
 function updateRestaurantTip(){const tip=document.getElementById('restaurantTip');if(!tip)return;const values=Object.values(records);if(values.length===0){tip.innerText='澄澄AI建议：今天可以选择温暖、低刺激、带来安全感的饮食。';return}const counts={快乐:0,生气:0,忧伤:0,焦虑:0,平静:0};values.forEach(r=>{if(counts[r.emotion]!==undefined)counts[r.emotion]++});const top=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0][0];const map={快乐:'澄澄AI建议：你最近状态积极，适合选择快乐分享套餐、云朵舒芙蕾和情绪气泡水。',生气:'澄澄AI建议：近期能量偏高，适合温热主食与低刺激饮品，帮助情绪慢慢降温。',忧伤:'澄澄AI建议：可以选择安心抱抱饭、热牛奶和陪伴型甜品，让身体先被照顾。',焦虑:'澄澄AI建议：适合白噪音拿铁、深夜陪伴乌冬面和低糖甜品，减少刺激，稳定节奏。',平静:'澄澄AI建议：适合轻食与温和饮品，延续稳定状态，也可以给未来的自己写一张便签。'};tip.innerText=map[top]}
 
 async function sendChat(){const input=document.getElementById('chatInput');const box=document.getElementById('chatBox');if(!input.value.trim())return;const userMessage=input.value;input.value='';box.innerHTML+=`<div class="msg"><b>你：</b>${userMessage}</div><div class="msg" id="loading"><b>澄澄：</b>正在思考...</div>`;box.scrollTop=box.scrollHeight;try{const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:userMessage,records})});const data=await res.json();document.getElementById('loading').remove();box.innerHTML+=`<div class="msg"><b>澄澄：</b>${data.reply||data.error||'我会一直陪着你。'}</div>`}catch(err){document.getElementById('loading').remove();box.innerHTML+=`<div class="msg"><b>澄澄：</b>连接失败了，请稍后再试。</div>`}box.scrollTop=box.scrollHeight}
-initSelectors();renderCalendar();initVisit();initRestaurant();
+
+function registerUser(){
+  const name=document.getElementById("loginName").value.trim();
+  const email=document.getElementById("loginEmail").value.trim();
+  const password=document.getElementById("loginPassword").value.trim();
+
+  if(!name || !email || !password){
+    alert("请填写昵称、邮箱/手机号和密码");
+    return;
+  }
+
+  const user={name,email,password};
+  localStorage.setItem("nanchuan_user",JSON.stringify(user));
+  localStorage.setItem("nanchuan_login","true");
+  enterApp(user);
+}
+
+function loginUser(){
+  const email=document.getElementById("loginEmail").value.trim();
+  const password=document.getElementById("loginPassword").value.trim();
+  const saved=JSON.parse(localStorage.getItem("nanchuan_user") || "null");
+
+  if(!saved){
+    alert("还没有账号，请先创建情绪档案");
+    return;
+  }
+
+  if(saved.email===email && saved.password===password){
+    localStorage.setItem("nanchuan_login","true");
+    enterApp(saved);
+  }else{
+    alert("账号或密码不正确");
+  }
+}
+
+function enterApp(user){
+  const mask=document.getElementById("loginMask");
+  if(mask) mask.style.display="none";
+  const nameBox=document.getElementById("userName");
+  if(nameBox) nameBox.innerText=user.name;
+}
+
+function logoutUser(){
+  localStorage.setItem("nanchuan_login","false");
+  const mask=document.getElementById("loginMask");
+  if(mask) mask.style.display="flex";
+}
+
+function checkLogin(){
+  const isLogin=localStorage.getItem("nanchuan_login");
+  const user=JSON.parse(localStorage.getItem("nanchuan_user") || "null");
+
+  if(isLogin==="true" && user){
+    enterApp(user);
+  }
+}
+
+initSelectors();renderCalendar();initVisit();initRestaurant();checkLogin();
 </script>
 </body>
 </html>

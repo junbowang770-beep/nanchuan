@@ -91,10 +91,13 @@ body{font-family:"Microsoft YaHei",sans-serif;background:linear-gradient(135deg,
 <script>
 const ENV_ID = "dengngi-nanchuan-d1eb1fk47375dfb";
 let cloudbaseApp = null;
+let cloudbaseAuth = null;
 let cloudbaseReady = Promise.resolve();
 
 function loadScript(src){
   return new Promise((resolve,reject)=>{
+    const old=document.querySelector(`script[src="${src}"]`);
+    if(old){ resolve(); return; }
     const s=document.createElement("script");
     s.src=src;
     s.onload=resolve;
@@ -107,50 +110,41 @@ async function initCloudbase(){
   const urls=[
     "https://static.cloudbase.net/cloudbase-js-sdk/2.9.1/cloudbase.full.js",
     "https://imgcache.qq.com/qcloud/cloudbase-js-sdk/2.9.1/cloudbase.full.js",
-    "https://imgcache.qq.com/qcloud/tcbjs/1.10.10/tcb.js"
+    "https://unpkg.com/@cloudbase/js-sdk@2.9.1/dist/cloudbase.full.js"
   ];
+
+  let lastError=null;
 
   for(const url of urls){
     try{
       await loadScript(url);
 
-      const sdk = window.cloudbase || window.tcb;
+      const sdk = window.cloudbase;
       if(!sdk) continue;
 
-      cloudbaseApp = sdk.init({
-        env: ENV_ID
-      });
+      cloudbaseApp = sdk.init({ env: ENV_ID });
 
-      const auth = cloudbaseApp.auth({
-        persistence: "local"
-      });
+      // 重要：全站只创建这一个 auth 对象，后面不要再 cloudbaseApp.auth()
+      cloudbaseAuth = cloudbaseApp.auth({ persistence:"local" });
 
-      try{
-        let state = await auth.getLoginState();
-        console.log("登录前状态：", state);
+      let state = await cloudbaseAuth.getLoginState();
+      console.log("CloudBase 登录前状态：", state);
 
-        if(!state){
-          if(auth.signInAnonymously){
-            await auth.signInAnonymously();
-          }else if(auth.anonymousAuthProvider){
-            await auth.anonymousAuthProvider().signIn();
-          }
-          state = await auth.getLoginState();
-        }
-
-        console.log("登录后状态：", state);
-      }catch(loginErr){
-        console.warn("匿名登录失败，但继续初始化：", loginErr);
+      if(!state){
+        await cloudbaseAuth.signInAnonymously();
+        state = await cloudbaseAuth.getLoginState();
       }
 
+      console.log("CloudBase 登录后状态：", state);
       console.log("CloudBase SDK 已加载：", url);
-      return;
+      return state;
     }catch(e){
-      console.warn("CloudBase SDK 加载失败：", url, e);
+      lastError=e;
+      console.warn("CloudBase SDK 加载或登录失败：", url, e);
     }
   }
 
-  throw new Error("CloudBase SDK 加载失败，请检查网络或 CDN。");
+  throw lastError || new Error("CloudBase SDK 加载失败，请检查网络或 CDN。");
 }
 
 cloudbaseReady = initCloudbase();
@@ -361,26 +355,57 @@ function updateRestaurantTip(){
 async function sendChat(){
   const input=document.getElementById('chatInput');
   const box=document.getElementById('chatBox');
-  if(!input.value.trim())return;
+
+  if(!input.value.trim()) return;
+
   const userMessage=input.value;
   input.value='';
+
   box.innerHTML+=`<div class="msg"><b>你：</b>${userMessage}</div><div class="msg" id="loading"><b>澄澄：</b>正在思考...</div>`;
   box.scrollTop=box.scrollHeight;
+
   try{
     await cloudbaseReady;
-    console.log(await cloudbaseApp.auth().getLoginState());
-    if(!cloudbaseApp)throw new Error('CloudBase SDK 未初始化');
-    const result=await cloudbaseApp.callFunction({name:'chat',data:{message:userMessage,records:records}});
-    const data=result.result||{};
+
+    if(!cloudbaseApp){
+      throw new Error("CloudBase SDK 未初始化");
+    }
+
+    if(!cloudbaseAuth){
+      throw new Error("CloudBase Auth 未初始化");
+    }
+
+    let state = await cloudbaseAuth.getLoginState();
+    if(!state){
+      await cloudbaseAuth.signInAnonymously();
+      state = await cloudbaseAuth.getLoginState();
+    }
+
+    console.log("发送前 CloudBase 登录状态：", state);
+
+    const result = await cloudbaseApp.callFunction({
+      name:"chat",
+      data:{
+        message:userMessage,
+        records:records
+      }
+    });
+
+    const data = result.result || {};
     const loading=document.getElementById('loading');
-    if(loading)loading.remove();
-    box.innerHTML+=`<div class="msg"><b>澄澄：</b>${data.reply||data.error||'我会一直陪着你。'}</div>`;
+    if(loading) loading.remove();
+
+    box.innerHTML+=`<div class="msg"><b>澄澄：</b>${data.reply || data.error || '我会一直陪着你。'}</div>`;
   }catch(err){
     const loading=document.getElementById('loading');
-    if(loading)loading.remove();
-    console.error('CloudBase chat error:',err);
-    box.innerHTML+=`<div class="msg"><b>澄澄：</b>连接失败：${err.message||JSON.stringify(err)}</div>`;
+    if(loading) loading.remove();
+
+    console.error("CloudBase chat error:", err);
+
+    const detail = err?.message || err?.error_description || err?.error || JSON.stringify(err);
+    box.innerHTML+=`<div class="msg"><b>澄澄：</b>连接失败：${detail}</div>`;
   }
+
   box.scrollTop=box.scrollHeight;
 }
 

@@ -111,20 +111,31 @@ async function initCloudbase(){
     "https://imgcache.qq.com/qcloud/tcbjs/1.10.10/tcb.js"
   ];
   for(const url of urls){
-    try{
-      await loadScript(url);
-      const sdk=window.cloudbase||window.tcb;
-      if(sdk){
-        cloudbaseApp=sdk.init({env:ENV_ID});
-        try{
-          const auth=cloudbaseApp.auth({persistence:"local"});
-          const state=await auth.getLoginState();
-          if(!state && auth.anonymousAuthProvider){
-            await auth.anonymousAuthProvider().signIn();
-          }
-        }catch(authErr){
-          console.warn("CloudBase 登录提醒：",authErr);
-        }
+   try{
+  const auth = cloudbaseApp.auth({
+    persistence:"local"
+  });
+
+  let state = await auth.getLoginState();
+
+  console.log("登录前状态：", state);
+
+  if(!state){
+
+    if(auth.signInAnonymously){
+      await auth.signInAnonymously();
+    }else if(auth.anonymousAuthProvider){
+      await auth.anonymousAuthProvider().signIn();
+    }
+
+    state = await auth.getLoginState();
+  }
+
+  console.log("登录后状态：", state);
+
+}catch(authErr){
+  console.error("CloudBase 登录失败：", authErr);
+}
         console.log("CloudBase SDK 已加载：",url);
         return;
       }
@@ -350,6 +361,7 @@ async function sendChat(){
   box.scrollTop=box.scrollHeight;
   try{
     await cloudbaseReady;
+    console.log(await cloudbaseApp.auth().getLoginState());
     if(!cloudbaseApp)throw new Error('CloudBase SDK 未初始化');
     const result=await cloudbaseApp.callFunction({name:'chat',data:{message:userMessage,records:records}});
     const data=result.result||{};

@@ -107,15 +107,14 @@ async function initCloudbase(){
   const urls=[
     "https://static.cloudbase.net/cloudbase-js-sdk/2.9.1/cloudbase.full.js",
     "https://imgcache.qq.com/qcloud/cloudbase-js-sdk/2.9.1/cloudbase.full.js",
-    "https://unpkg.com/@cloudbase/js-sdk@2.9.1/dist/cloudbase.full.js",
-    "https://imgcache.qq.com/qcloud/tcbjs/1.10.10/tcb.js"
+    "https://unpkg.com/@cloudbase/js-sdk@2.9.1/dist/cloudbase.full.js"
   ];
 
   for(const url of urls){
     try{
       await loadScript(url);
 
-      const sdk = window.cloudbase || window.tcb;
+      const sdk = window.cloudbase;
       if(!sdk) continue;
 
       cloudbaseApp = sdk.init({
@@ -130,31 +129,23 @@ async function initCloudbase(){
       console.log("登录前状态：", state);
 
       if(!state){
-        if(typeof auth.signInAnonymously === "function"){
-          await auth.signInAnonymously();
-        }else if(auth.anonymousAuthProvider && typeof auth.anonymousAuthProvider === "function"){
-          await auth.anonymousAuthProvider().signIn();
-        }else{
-          throw new Error("当前 CloudBase SDK 不支持匿名登录方法");
-        }
-
+        await auth.signInAnonymously();
         state = await auth.getLoginState();
       }
 
       console.log("登录后状态：", state);
       console.log("CloudBase SDK 已加载：", url);
-      return;
 
+      return;
     }catch(e){
-      console.warn("CloudBase SDK 加载/登录失败：", url, e);
+      console.warn("CloudBase SDK 加载或登录失败：", url, e);
     }
   }
 
-  throw new Error("CloudBase SDK 加载失败或匿名登录失败，请检查网络、匿名登录、授权域名。");
+  throw new Error("CloudBase SDK 加载失败，请检查网络或 CDN。");
 }
 
 cloudbaseReady = initCloudbase();
-
 const pages=document.querySelectorAll('.page');
 const navBtns=document.querySelectorAll('.nav button');
 function showPage(id,btn){pages.forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');navBtns.forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active')}

@@ -107,14 +107,14 @@ async function initCloudbase(){
   const urls=[
     "https://static.cloudbase.net/cloudbase-js-sdk/2.9.1/cloudbase.full.js",
     "https://imgcache.qq.com/qcloud/cloudbase-js-sdk/2.9.1/cloudbase.full.js",
-    "https://unpkg.com/@cloudbase/js-sdk@2.9.1/dist/cloudbase.full.js"
+    "https://imgcache.qq.com/qcloud/tcbjs/1.10.10/tcb.js"
   ];
 
   for(const url of urls){
     try{
       await loadScript(url);
 
-      const sdk = window.cloudbase;
+      const sdk = window.cloudbase || window.tcb;
       if(!sdk) continue;
 
       cloudbaseApp = sdk.init({
@@ -125,20 +125,28 @@ async function initCloudbase(){
         persistence: "local"
       });
 
-      let state = await auth.getLoginState();
-      console.log("登录前状态：", state);
+      try{
+        let state = await auth.getLoginState();
+        console.log("登录前状态：", state);
 
-      if(!state){
-        await auth.signInAnonymously();
-        state = await auth.getLoginState();
+        if(!state){
+          if(auth.signInAnonymously){
+            await auth.signInAnonymously();
+          }else if(auth.anonymousAuthProvider){
+            await auth.anonymousAuthProvider().signIn();
+          }
+          state = await auth.getLoginState();
+        }
+
+        console.log("登录后状态：", state);
+      }catch(loginErr){
+        console.warn("匿名登录失败，但继续初始化：", loginErr);
       }
 
-      console.log("登录后状态：", state);
       console.log("CloudBase SDK 已加载：", url);
-
       return;
     }catch(e){
-      console.warn("CloudBase SDK 加载或登录失败：", url, e);
+      console.warn("CloudBase SDK 加载失败：", url, e);
     }
   }
 

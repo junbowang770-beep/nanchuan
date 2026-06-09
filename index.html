@@ -110,42 +110,50 @@ async function initCloudbase(){
     "https://unpkg.com/@cloudbase/js-sdk@2.9.1/dist/cloudbase.full.js",
     "https://imgcache.qq.com/qcloud/tcbjs/1.10.10/tcb.js"
   ];
+
   for(const url of urls){
-   try{
-  const auth = cloudbaseApp.auth({
-    persistence:"local"
-  });
+    try{
+      await loadScript(url);
 
-  let state = await auth.getLoginState();
+      const sdk = window.cloudbase || window.tcb;
+      if(!sdk) continue;
 
-  console.log("登录前状态：", state);
+      cloudbaseApp = sdk.init({
+        env: ENV_ID
+      });
 
-  if(!state){
+      const auth = cloudbaseApp.auth({
+        persistence: "local"
+      });
 
-    if(auth.signInAnonymously){
-      await auth.signInAnonymously();
-    }else if(auth.anonymousAuthProvider){
-      await auth.anonymousAuthProvider().signIn();
-    }
+      let state = await auth.getLoginState();
+      console.log("登录前状态：", state);
 
-    state = await auth.getLoginState();
-  }
+      if(!state){
+        if(typeof auth.signInAnonymously === "function"){
+          await auth.signInAnonymously();
+        }else if(auth.anonymousAuthProvider && typeof auth.anonymousAuthProvider === "function"){
+          await auth.anonymousAuthProvider().signIn();
+        }else{
+          throw new Error("当前 CloudBase SDK 不支持匿名登录方法");
+        }
 
-  console.log("登录后状态：", state);
-
-}catch(authErr){
-  console.error("CloudBase 登录失败：", authErr);
-}
-        console.log("CloudBase SDK 已加载：",url);
-        return;
+        state = await auth.getLoginState();
       }
+
+      console.log("登录后状态：", state);
+      console.log("CloudBase SDK 已加载：", url);
+      return;
+
     }catch(e){
-      console.warn("CloudBase SDK 加载失败：",url,e);
+      console.warn("CloudBase SDK 加载/登录失败：", url, e);
     }
   }
-  throw new Error("CloudBase SDK 加载失败，请检查网络或 CDN。");
+
+  throw new Error("CloudBase SDK 加载失败或匿名登录失败，请检查网络、匿名登录、授权域名。");
 }
-cloudbaseReady=initCloudbase();
+
+cloudbaseReady = initCloudbase();
 
 const pages=document.querySelectorAll('.page');
 const navBtns=document.querySelectorAll('.nav button');
